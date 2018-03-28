@@ -8,6 +8,7 @@ class Bicycle {
 private:
 	int id;
 public:
+	Bicycle(){}
 	Bicycle(int id);
 	int getId();
 };

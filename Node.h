@@ -19,6 +19,10 @@ public:
     Node(){}
     Node(long id,double latitudeDegrees, double longitudeDegrees, double longitudeRadians, double latitudeRadians);
 
+    //Helper attributes for Dijkstra search
+    double dist;
+    Node *path;
+    int queueIndex;
 };
 
 #endif //PROJECT1_NODE_H

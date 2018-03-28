@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "MutablePriorityQueue.h"
 
 Application ::Application() {
     this->nodeList = {};
@@ -108,4 +109,38 @@ void Application ::start() {
 
     loadRoads(roadsPath);
     loadNodes(nodesPath);
+}
+
+void Application::dijkstraShortestPath(Node *origin, Node *end) {
+
+    int inf = 999999999;
+
+    MutablePriorityQueue<Node> q;
+
+    for(auto v : this->nodeList){
+        v.dist = inf;
+        v.path = nullptr;
+        v.queueIndex = -1;
+    }
+
+    origin->dist = 0;
+    origin->queueIndex = 0;
+    q.insert(origin);
+
+    while(!q.empty()){
+        Node *v = q.extractMin();
+        for(auto edge : v->adj){ //TODO - Decide how edges will be stored in the graph
+            Node *w = edge.dest;
+            if(w->dist > (v->dist + edge.weight)){
+                double oldDist = w->dist;
+                w->dist = v->dist + edge.weight;
+                w->path = v;
+                if(oldDist == inf){
+                    q.insert(w);
+                }else{
+                    q.decreaseKey(w);
+                }
+            }
+        }
+    }
 }

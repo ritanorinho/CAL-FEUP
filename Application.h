@@ -18,6 +18,7 @@ public:
     Road createRoad(string line);
     void loadNodes(string path);
     Node createNode(string line);
+    void dijkstraShortestPath(Node &origin);
     //
     void listNodes();
     void listRoads();

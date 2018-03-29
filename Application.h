@@ -3,6 +3,7 @@
 
 #include "Road.h"
 #include "Node.h"
+#include "SubRoad.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -11,6 +12,7 @@ class Application{
 private:
     vector<Road> roadList;
     vector<Node> nodeList;
+	vector<SubRoad> subRoadList;
 public:
     Application();
     void start();
@@ -18,10 +20,13 @@ public:
     Road createRoad(string line);
     void loadNodes(string path);
     Node createNode(string line);
+	void loadSubRoads(string path);
+	SubRoad createSubRoad(string line);
     void dijkstraShortestPath(Node &origin);
     //
     void listNodes();
     void listRoads();
+	void listSubRoads();
 
 
 };

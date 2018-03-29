@@ -4,6 +4,7 @@
 Application ::Application() {
     this->nodeList = {};
     this->roadList = {};
+	this->subRoadList = {};
 }
 void Application ::loadRoads(string path) {
     ifstream ifs;
@@ -40,6 +41,32 @@ void Application ::loadNodes(string path) {
     }
 
     ifs.close();
+}
+void Application::loadSubRoads(string path) {
+	ifstream ifs;
+	ifs.open(path);
+	
+	string line;
+	if (!ifs.is_open()) {
+		cerr << "Error loading SubRoads File" << endl;
+	}
+	else {
+		while (getline(ifs, line)) {
+			this->subRoadList.push_back(createSubRoad(line));
+		}
+	}
+	ifs.close();
+
+}
+SubRoad Application::createSubRoad(string line) {
+	string id, node1_id, node2_id;
+	id = line.substr(0, line.find(';'));
+	line = line.erase(0, line.find(';') + 1);
+	node1_id = line.substr(0, line.find(';'));
+	line = line.erase(0, line.find(';') + 1);
+	node2_id= line.substr(0, line.find(';'));
+	SubRoad sR= SubRoad(stoi(id), stoi(node1_id), stoi(node2_id));
+	return sR;
 }
 
 Road Application ::createRoad(string line) {
@@ -98,17 +125,28 @@ void Application ::listRoads() {
         cout << "isTwoWay: " << this->roadList[i].isTwoWay << endl;
     }
 }
+void Application::listSubRoads() {
+	for (int i = 0; i < this->subRoadList.size(); i++) {
+	
+		cout << "ID: " << this->subRoadList[i].id << endl;
+		cout << "Node 1 id" << this->subRoadList[i].node1_id << endl;
+		cout << "Node 2 id" << this->subRoadList[i].node2_id << endl;
+	}
+}
 
 void Application ::start() {
-    string nodesPath, roadsPath;
+	string nodesPath, roadsPath, subRoadsPath;
 
     cout << "Insert the nodes path: " << endl;
     getline(cin, nodesPath);
     cout << "Insert the roads path: " << endl;
     getline(cin, roadsPath);
+	cout << "Insert the subRoads path: " << endl;
+	getline(cin, subRoadsPath);
 
     loadRoads(roadsPath);
     loadNodes(nodesPath);
+	loadSubRoads(subRoadsPath);
 }
 
 void Application::dijkstraShortestPath(Node *origin, Node *end) {

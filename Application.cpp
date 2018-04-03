@@ -72,9 +72,25 @@ void Application::loadSharePoints(string path) {
 			this->sharePointList.push_back(createSharePoint(line));
 		}
 	}
-
-
+    ifs.close();
 }
+
+void Application ::loadBicycles(string path) {
+    ifstream ifs;
+    ifs.open(path);
+
+    string line;
+
+    if (!ifs.is_open()) {
+        cerr << "Error loading the Roads File" << endl;
+    }
+    else {
+        while (getline(ifs, line)) {
+            this->bicycleList.push_back(createBicycle(line));
+        }
+    }
+}
+
 SubRoad Application::createSubRoad(string line) {
 	string id, node1_id, node2_id;
 	id = line.substr(0, line.find(';'));
@@ -139,6 +155,15 @@ Node Application :: createNode(string line){
     return n;
 }
 
+Bicycle Application ::createBicycle(string line) {
+    string id;
+    id = line.substr(0, line.find(';'));
+
+    Bicycle b = Bicycle(stoi(id));
+    return b;
+
+}
+
 // Test Functions
 
 void Application ::listNodes() {
@@ -179,10 +204,17 @@ void Application::listSharePoints() {
 	}
 }
 
-void Application ::start() {
-	string nodesPath, roadsPath, subRoadsPath,sharePointsPath;
+void Application ::listBicycles() {
+    for (int i = 0; i < this->bicycleList.size(); i++)
+    {
+        cout << "ID: " << this->bicycleList[i].getId() << endl;
+    }
+}
 
-    cout << "Insert the nodes path: " << endl;
+void Application ::start() {
+	string nodesPath, roadsPath, subRoadsPath,sharePointsPath, bicyclesPath;
+
+/*    cout << "Insert the nodes path: " << endl;
     getline(cin, nodesPath);
     cout << "Insert the roads path: " << endl;
     getline(cin, roadsPath);
@@ -194,9 +226,16 @@ void Application ::start() {
     loadRoads(roadsPath);
     loadNodes(nodesPath);
 	loadSubRoads(subRoadsPath);
-	loadSharePoints(sharePointsPath);
+	loadSharePoints(sharePointsPath);*/
+
+    cout << "Insert the Bicycles Path: " << endl;
+    getline(cin, bicyclesPath);
+
+    loadBicycles(bicyclesPath);
+    listBicycles();
 }
 
+/*
 void Application::dijkstraShortestPath(Node *origin, Node *end) {
 
     int inf = 999999999;
@@ -230,3 +269,4 @@ void Application::dijkstraShortestPath(Node *origin, Node *end) {
         }
     }
 }
+*/

@@ -30,12 +30,16 @@ public:
 	SubRoad createSubRoad(string line);
 	void loadSharePoints(string path);
 	SharePoint createSharePoint(string line);
+    void loadBicycles(string path);
+    Bicycle createBicycle(string line);
+
     void dijkstraShortestPath(Node &origin);
     //
     void listNodes();
     void listRoads();
 	void listSubRoads();
 	void listSharePoints();
+    void listBicycles();
 
 	void distributeBicycles();
 	void addBicycleToSharePoint(Bicycle bicycle, SharePoint sharePoint);

@@ -69,6 +69,9 @@ void Menu ::viewMenu(){
             break;
         case 5:
             exit(0);
+        case 6:
+            this->app.listBicycles();
+            break;
     }
 }
 

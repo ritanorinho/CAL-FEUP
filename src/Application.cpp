@@ -72,9 +72,25 @@ void Application::loadSharePoints(string path) {
 			this->sharePointList.push_back(createSharePoint(line));
 		}
 	}
-
-
+    ifs.close();
 }
+
+void Application ::loadBicycles(string path) {
+        ifstream ifs;
+        ifs.open(path);
+
+        string line;
+
+        if (!ifs.is_open()) {
+                cerr << "Error loading the Bicycles File" << endl;
+           }
+        else {
+                while (getline(ifs, line)) {
+                        this->bicycleList.push_back(createBicycle(line));
+                    }
+            }
+}
+
 SubRoad Application::createSubRoad(string line) {
 	string id, node1_id, node2_id;
 	id = line.substr(0, line.find(';'));
@@ -139,6 +155,14 @@ Node Application :: createNode(string line){
     return n;
 }
 
+Bicycle Application ::createBicycle(string line) {
+        string id;
+        id = line.substr(0, line.find(';'));
+
+                Bicycle b = Bicycle(stoi(id));
+        return b;
+}
+
 // Test Functions
 
 void Application ::listNodes() {
@@ -179,8 +203,15 @@ void Application::listSharePoints() {
 	}
 }
 
+void Application ::listBicycles() {
+        for (int i = 0; i < this->bicycleList.size(); i++)
+            {
+                cout << "ID: " << this->bicycleList[i].getId() << endl;
+            }
+}
+
 void Application ::start() {
-	string nodesPath, roadsPath, subRoadsPath,sharePointsPath;
+	string nodesPath, roadsPath, subRoadsPath,sharePointsPath,bicyclesPath;
 
     cout << "Insert the nodes path: " << endl;
     getline(cin, nodesPath);
@@ -190,12 +221,17 @@ void Application ::start() {
 	getline(cin, subRoadsPath);
 	cout << "Insert the sharePoints path: " << endl;
 	getline(cin,sharePointsPath);
+    cout << "Insert the Bicycles Path: " << endl;
+    getline(cin, bicyclesPath);
 
     loadRoads(roadsPath);
     loadNodes(nodesPath);
 	loadSubRoads(subRoadsPath);
 	loadSharePoints(sharePointsPath);
+    loadBicycles(bicyclesPath);
 }
+
+
 void Application::distributeBicycles() {
 	int j = 0;
 	for (size_t i = 0; i < bicycleList.size(); i++) {
@@ -219,10 +255,9 @@ void Application::addClient(Client client) {
 			cout << "This client already exists!" << endl;
 			return;
 		}
-		else clientList.push_back(client);
 }
 
-void Application::dijkstraShortestPath(Node *origin, Node *end) {
+/* void Application::dijkstraShortestPath(Node *origin, Node *end) {
 
     int inf = 999999999;
 
@@ -254,4 +289,4 @@ void Application::dijkstraShortestPath(Node *origin, Node *end) {
             }
         }
     }
-}
+}*/

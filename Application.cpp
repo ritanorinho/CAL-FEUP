@@ -58,6 +58,23 @@ void Application::loadSubRoads(string path) {
 	ifs.close();
 
 }
+void Application::loadSharePoints(string path) {
+	ifstream ifs;
+	ifs.open(path);
+
+	string line;
+
+	if (!ifs.is_open()) {
+		cerr << "Error loading the Roads File" << endl;
+	}
+	else {
+		while (getline(ifs, line)) {
+			this->sharePointList.push_back(createSharePoint(line));
+		}
+	}
+
+
+}
 SubRoad Application::createSubRoad(string line) {
 	string id, node1_id, node2_id;
 	id = line.substr(0, line.find(';'));
@@ -85,7 +102,25 @@ Road Application ::createRoad(string line) {
     Road r = Road(stoi(id), name, twoWay);
     return r;
 }
+SharePoint Application::createSharePoint(string line) {
+	string id, name, isTwoWay,price;
+	bool twoWay = false;
 
+	id = line.substr(0, line.find(';'));
+	line = line.erase(0, line.find(';') + 1);
+	name = line.substr(0, line.find(';'));
+	line = line.erase(0, line.find(';') + 1);
+	isTwoWay = line.substr(0, line.find(';'));
+	if (isTwoWay[0] == 'T')
+		twoWay = true;
+	Road r = Road(stoi(id), name, twoWay);
+	line = line.erase(0, line.find(';') + 1);
+	price = line.substr(0, line.find(';'));
+	SharePoint sP = SharePoint(r, stoi(price));
+	return sP;
+
+
+}
 Node Application :: createNode(string line){
 
     string id, latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians;
@@ -133,9 +168,19 @@ void Application::listSubRoads() {
 		cout << "Node 2 id" << this->subRoadList[i].node2_id << endl;
 	}
 }
+void Application::listSharePoints() {
+	for (int i = 0; i < this->sharePointList.size(); i++) {
+
+		cout << "ID: " << this->sharePointList[i].getRoad().id<< endl;
+		cout << "Street Name: " << this->sharePointList[i].getRoad().name << endl;
+		cout << "isTwoWay: " << this->sharePointList[i].getRoad().isTwoWay << endl;
+		cout << "Price: "<< this->sharePointList[i].getPriceDay() << endl;
+
+	}
+}
 
 void Application ::start() {
-	string nodesPath, roadsPath, subRoadsPath;
+	string nodesPath, roadsPath, subRoadsPath,sharePointsPath;
 
     cout << "Insert the nodes path: " << endl;
     getline(cin, nodesPath);
@@ -143,10 +188,13 @@ void Application ::start() {
     getline(cin, roadsPath);
 	cout << "Insert the subRoads path: " << endl;
 	getline(cin, subRoadsPath);
+	cout << "Insert the sharePoints path: " << endl;
+	getline(cin,sharePointsPath);
 
     loadRoads(roadsPath);
     loadNodes(nodesPath);
 	loadSubRoads(subRoadsPath);
+	loadSharePoints(sharePointsPath);
 }
 
 void Application::dijkstraShortestPath(Node *origin, Node *end) {

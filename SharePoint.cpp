@@ -8,6 +8,11 @@ using namespace std;
  SharePoint::SharePoint() {
 
 }
+ SharePoint::SharePoint(Road road, int priceDay) {
+	 this->road = road;
+	 this->priceDay = priceDay;
+
+ }
  vector<Bicycle> SharePoint::getBicycles() {
 	 return bicycles;
 
@@ -15,3 +20,6 @@ using namespace std;
  int SharePoint::getPriceDay() {
 	 return priceDay;
 }
+ Road SharePoint::getRoad() {
+	 return road;
+ }

@@ -4,6 +4,7 @@
 #include "Road.h"
 #include "Node.h"
 #include "SubRoad.h"
+#include "SharePoint.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -13,6 +14,7 @@ private:
     vector<Road> roadList;
     vector<Node> nodeList;
 	vector<SubRoad> subRoadList;
+	vector<SharePoint> sharePointList;
 public:
     Application();
     void start();
@@ -22,11 +24,14 @@ public:
     Node createNode(string line);
 	void loadSubRoads(string path);
 	SubRoad createSubRoad(string line);
+	void loadSharePoints(string path);
+	SharePoint createSharePoint(string line);
     void dijkstraShortestPath(Node &origin);
     //
     void listNodes();
     void listRoads();
 	void listSubRoads();
+	void listSharePoints();
 
 
 };

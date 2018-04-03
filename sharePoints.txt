@@ -1,0 +1,8 @@
+8367073;Rua da Boa Hora;False;5;
+8367089;Rua de Carlos Alberto;True;6;
+8367092;Rua da Boavista;False;5;
+8367154;Rua da Escola Normal;False;10;
+8367160;Rua Dom João IV;False;20;
+8367164;Travessa de Anselmo Braancamp;False;7;
+12300169;Rua Ferreira Borges;False;12;
+12543115;Radial de Gondomar;False;13;

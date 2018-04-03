@@ -219,6 +219,7 @@ void Application::addClient(Client client) {
 			cout << "This client already exists!" << endl;
 			return;
 		}
+		else clientList.push_back(client);
 }
 
 void Application::dijkstraShortestPath(Node *origin, Node *end) {

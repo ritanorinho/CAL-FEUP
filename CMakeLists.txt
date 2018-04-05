@@ -1,6 +1,17 @@
 cmake_minimum_required(VERSION 3.9)
-project(CAL-FEUP)
+project(CAL C CXX)
 
-set(CMAKE_CXX_STANDARD 11)
-file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
-add_executable(untitled $(SOURCE_FILES))
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(CAL
+        src/GraphViewer/connection.cpp
+        src/GraphViewer/edgetype.h
+        src/GraphViewer/graphviewer.cpp
+
+        src/main.cpp
+        src/Application.cpp
+        src/Graph.h
+        src/Menus.cpp
+        src/MutablePriorityQueue.h
+        src/NodeInfo.cpp
+        src/SharePoint.cpp src/VertexData.cpp src/VertexData.h)

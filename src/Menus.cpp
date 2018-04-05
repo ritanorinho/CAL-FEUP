@@ -59,7 +59,7 @@ void Menu ::viewMenu(){
             //viewGraph();
             break;
         case 2:
-            this->app.listRoads();
+            //TODO
             break;
         case 3:
             returnMenu();
@@ -70,7 +70,7 @@ void Menu ::viewMenu(){
         case 5:
             exit(0);
         case 6:
-            this->app.listBicycles();
+            //TODO
             break;
     }
 }

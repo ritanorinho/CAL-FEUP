@@ -5,30 +5,18 @@
 #include <iomanip>
 #include <vector>
 #include <string>
-#include "Road.h"
-#include "Bicycle.h"
 
 using namespace std;
 
 class SharePoint {
-
-private :
-	vector<Bicycle> bicycles;
-	int priceDay;
-	Road road;
-
-
-
+	int bicycles;
+	int currentPrice;
 public:
 	SharePoint();
-	SharePoint(Road road, int priceDay);
-	vector<Bicycle> getBicycles();
-	int getPriceDay();
-	Road getRoad();
-	void addBicycle(Bicycle bicycle);
+	SharePoint(int bicycles, int priceDay);
+	int getBicycles() const;
+	void setBicycles(int bicycles);
+	int getCurrentPrice() const;
+	void setCurrentPrice(int currentPrice);
 	bool operator==(SharePoint &sp);
-
-
-
-
 };

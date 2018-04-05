@@ -123,7 +123,8 @@ void Application::createRoad(string line) {
                 edge.setNome_rua(name);
 
                 if (isTwoWay[0] == 'T'){
-                    double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
+                    //double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
+                    double weight = 1; //For testing only
 
                     Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,stol(id));
                     if(newEdge != nullptr){
@@ -208,6 +209,15 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
+    VertexData v_finder(2);
+
+    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
+
+    for(auto vd:res){
+        cout << vd.getId() << ";";
+    }
+    cout << endl;
+
     visualizeGraph();
 }
 
@@ -243,57 +253,25 @@ void Application::visualizeGraph(){
     for(auto vertex: graph.getVertexSet()){
         /*gv->addNode(vertex->getInfo().getId(),xres * (vertex->getInfo().getLatitudeDegrees() - minLat)/(maxLat-minLat),
                                               yres * (vertex->getInfo().getLongitudeDegrees() - minLong)/(maxLong-minLong));*/
-        gv->addNode(vertex->getInfo().getId());
 
-        if(vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getBicycles() != -1){
+        if(vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getCurrentPrice() != -1){
             gv->setVertexColor(vertex->getInfo().getId(),"red");
         }
+
+        gv->addNode(vertex->getInfo().getId());
+
     }
 
     long edgeId = 0;
 
-    for(auto vertex: graph.getVertexSet()){
+    for(auto vertex: graph.getVertexSet()){ //MISBEHAVING
         for(auto edge: vertex->getAdj()){
+            gv->setEdgeLabel(edgeId,edge.getNome_rua());
+
             gv->addEdge(edgeId,vertex->getInfo().getId(),edge.getDest()->getInfo().getId(),EdgeType::DIRECTED);
             edgeId++;
-
-            gv->setEdgeLabel(edgeId,edge.getNome_rua());
         }
     }
 
     gv->rearrange();
 }
-
-/* void Application::dijkstraShortestPath(Node *origin, Node *end) {
-
-    int inf = 999999999;
-
-    MutablePriorityQueue<Node> q;
-
-    for(auto v : this->nodeList){
-        v.dist = inf;
-        v.path = nullptr;
-        v.queueIndex = -1;
-    }
-
-    origin->dist = 0;
-    origin->queueIndex = 0;
-    q.insert(origin);
-
-    while(!q.empty()){
-        Node *v = q.extractMin();
-        for(auto edge : v->adj){ //TODO - Decide how edges will be stored in the graph
-            Node *w = edge.dest;
-            if(w->dist > (v->dist + edge.weight)){
-                double oldDist = w->dist;
-                w->dist = v->dist + edge.weight;
-                w->path = v;
-                if(oldDist == inf){
-                    q.insert(w);
-                }else{
-                    q.decreaseKey(w);
-                }
-            }
-        }
-    }
-}*/

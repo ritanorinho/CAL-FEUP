@@ -25,12 +25,10 @@ template <class T>
 class Vertex {
 private:
 	T info;                // contents
-	vector<Edge<T>> adj;
     // outgoing edges
 	bool visited;          // auxiliary field
-	double dist = 0;
-	Vertex<T> *path = NULL;
-	int queueIndex = 0; 		// required by MutablePriorityQueue
+    Vertex<T> *path = NULL;
+    // required by MutablePriorityQueue
 
 	bool processing = false;
     Edge<T> * addEdge(Vertex<T> *dest, double w, long id);
@@ -38,13 +36,17 @@ private:
 public:
 	Vertex(T in);
 	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
-	T getInfo() const;
+	T &getInfo();
 	double getDist() const;
 	Vertex *getPath() const;
 	friend class Graph<T>;
 	friend class MutablePriorityQueue<Vertex<T>>;
     vector<Edge<T>> &getAdj();
     void setAdj(const vector<Edge<T>> &adj);
+
+    double dist = 0;
+    int queueIndex = 0;
+    vector<Edge<T>> adj;
 };
 
 
@@ -75,7 +77,7 @@ bool Vertex<T>::operator<(Vertex<T> & vertex) const {
 }
 
 template <class T>
-T Vertex<T>::getInfo() const {
+T &Vertex<T>::getInfo() {
 	return this->info;
 }
 
@@ -142,6 +144,7 @@ public:
 	void floydWarshallShortestPath();
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;
 
+    vector<T> findNearestSharepoint(const T &origin);
 };
 
 template<class T>
@@ -236,14 +239,108 @@ Edge<T> *Graph<T>::addEdge(const T &sourc, const T &dest, double w,long id) {
 
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
-	// TODO
+    MutablePriorityQueue<Vertex<T> > q;
+
+    for(auto v : this->vertexSet){
+        v->dist = INF;
+        v->path = nullptr;
+        v->queueIndex = -1;
+    }
+
+    Vertex<T> *originVertex = findVertex(origin);
+
+    originVertex->dist = 0;
+    originVertex->queueIndex = 0;
+    q.insert(originVertex);
+
+    while(!q.empty()){
+        Vertex<T> *v = q.extractMin();
+        for(auto edge : v->adj){
+            Vertex<T> *w = edge.dest;
+            if(w->dist > (v->dist + edge.weight)){
+                double oldDist = w->dist;
+                w->dist = v->dist + edge.weight;
+                w->path = v;
+                if(oldDist == INF){
+                    q.insert(w);
+                }else{
+                    q.decreaseKey(w);
+                }
+            }
+        }
+    }
+}
+
+template<class T>
+vector<T> Graph<T>::findNearestSharepoint(const T &origin) {
+    MutablePriorityQueue<Vertex<T>> q;
+
+    for(auto v : this->vertexSet){
+        v->dist = INF;
+        v->path = nullptr;
+        v->queueIndex = -1;
+    }
+
+    Vertex<T> *originVertex = findVertex(origin);
+
+    originVertex->dist = 0;
+    originVertex->queueIndex = 0;
+    q.insert(originVertex);
+
+    Vertex<T> *v;
+
+    while(!q.empty()){
+        v = q.extractMin();
+        cout << "Now on vertex: " << v->getInfo().getId() << endl;
+        if(v->getInfo().getSharePoint().getBicycles() != -1 && v->getInfo().getSharePoint().getCurrentPrice() != -1){
+            cout << "Found sharepoint: " << v->getInfo().getSharePoint().getBicycles() << " / " << v->getInfo().getSharePoint().getCurrentPrice() << endl;
+            return getPath(origin,v->getInfo());
+        }
+        for(auto edge : v->adj){
+            Vertex<T> *w = edge.dest;
+            if(w->dist > (v->dist + edge.weight)){
+                double oldDist = w->dist;
+                w->dist = v->dist + edge.weight;
+                w->path = v;
+                if(oldDist == INF){
+                    q.insert(w);
+                }else{
+                    q.decreaseKey(w);
+                }
+            }
+        }
+    }
+
+    return vector<T>();
 }
 
 template<class T>
 vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
-	vector<T> res;
-	// TODO
-	return res;
+    vector<T> res;
+
+    Vertex<T> *curr_vertex = findVertex(dest);
+    Vertex<T> *dest_vertex = findVertex(origin);
+
+    if(curr_vertex == dest_vertex){
+        cout << "Warning: Origin is the same as Dest" << endl;
+    }
+
+    res.push_back(curr_vertex->info);
+
+    while(curr_vertex != dest_vertex) {
+        curr_vertex = curr_vertex->path;
+
+        if(curr_vertex == 0x0){
+            cout << "Could not find path" << endl;
+            return res;
+        }
+
+        res.push_back(curr_vertex->info);
+    }
+
+    reverse(res.begin(),res.end());
+
+    return res;
 }
 
 template<class T>

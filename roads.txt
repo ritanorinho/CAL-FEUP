@@ -1,11 +1,11 @@
 0;Rua 0;True;
-1;Rua 1;True;
+1;Rua 1;False;
 2;Rua 2;False;
-3;Rua 3;True;
+3;Rua 3;False;
 4;Rua 4;False;
-5;Rua 5;True;
-6;Rua 6;True;
+5;Rua 5;False;
+6;Rua 6;False;
 7;Rua 7;False;
-8;Rua 8;True;
+8;Rua 8;False;
 9;Rua 9;False;
-10;Rua 10;True;
+10;Rua 10;False;

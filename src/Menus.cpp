@@ -79,4 +79,6 @@ void Menu :: addMenu(){}
 
 void Menu :: returnMenu(){}
 
-void Menu :: nearestPointMenu(){}
+void Menu :: nearestPointMenu(){
+
+}

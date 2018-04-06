@@ -27,9 +27,6 @@ CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/MutablePriorityQueue.h
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/SharePoint.h
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/VertexData.h
 
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o: ../src/NodeInfo.cpp
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o: ../src/NodeInfo.h
-
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: ../src/SharePoint.cpp
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: ../src/SharePoint.h
 

@@ -115,12 +115,6 @@
 		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/MutablePriorityQueue.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/NodeInfo.cpp">
-			<Option target="CAL"/>
-		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/NodeInfo.h">
-			<Option target="CAL"/>
-		</Unit>
 		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp">
 			<Option target="CAL"/>
 		</Unit>

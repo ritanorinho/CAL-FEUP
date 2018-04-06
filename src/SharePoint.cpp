@@ -7,9 +7,10 @@ using namespace std;
  SharePoint::SharePoint() {
     bicycles = -1;currentPrice = -1;
 }
- SharePoint::SharePoint(int bicycles, int currentPrice) {
+ SharePoint::SharePoint(int bicycles, int currentPrice, int max_bicycle) {
 	 this->bicycles = bicycles;
 	 this->currentPrice = currentPrice;
+     this->max_bicycle = max_bicycle;
  }
 
 int SharePoint::getBicycles() const {
@@ -26,4 +27,20 @@ int SharePoint::getCurrentPrice() const {
 
 void SharePoint::setCurrentPrice(int currentPrice) {
     SharePoint::currentPrice = currentPrice;
+}
+
+bool SharePoint::dropBicycle() {
+    if(bicycles < max_bicycle){
+        bicycles++;
+        return true;
+    }
+    return false;
+}
+
+bool SharePoint::pickBicycle() {
+    if(bicycles > 0){
+        bicycles--;
+        return true;
+    }
+    return false;
 }

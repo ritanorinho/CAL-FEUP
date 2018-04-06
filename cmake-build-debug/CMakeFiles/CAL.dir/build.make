@@ -177,33 +177,9 @@ CMakeFiles/CAL.dir/src/Menus.cpp.o.provides: CMakeFiles/CAL.dir/src/Menus.cpp.o.
 CMakeFiles/CAL.dir/src/Menus.cpp.o.provides.build: CMakeFiles/CAL.dir/src/Menus.cpp.o
 
 
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o: CMakeFiles/CAL.dir/flags.make
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o: ../src/NodeInfo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CAL.dir/src/NodeInfo.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/NodeInfo.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/NodeInfo.cpp
-
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/NodeInfo.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/NodeInfo.cpp > CMakeFiles/CAL.dir/src/NodeInfo.cpp.i
-
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/NodeInfo.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/NodeInfo.cpp -o CMakeFiles/CAL.dir/src/NodeInfo.cpp.s
-
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.requires:
-
-.PHONY : CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.requires
-
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.provides: CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.provides.build
-.PHONY : CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.provides
-
-CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.provides.build: CMakeFiles/CAL.dir/src/NodeInfo.cpp.o
-
-
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: ../src/SharePoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/SharePoint.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp
 
 CMakeFiles/CAL.dir/src/SharePoint.cpp.i: cmake_force
@@ -227,7 +203,7 @@ CMakeFiles/CAL.dir/src/SharePoint.cpp.o.provides.build: CMakeFiles/CAL.dir/src/S
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/VertexData.cpp.o: ../src/VertexData.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CAL.dir/src/VertexData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CAL.dir/src/VertexData.cpp.o"
 	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/VertexData.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/VertexData.cpp
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.i: cmake_force
@@ -256,7 +232,6 @@ CAL_OBJECTS = \
 "CMakeFiles/CAL.dir/src/main.cpp.o" \
 "CMakeFiles/CAL.dir/src/Application.cpp.o" \
 "CMakeFiles/CAL.dir/src/Menus.cpp.o" \
-"CMakeFiles/CAL.dir/src/NodeInfo.cpp.o" \
 "CMakeFiles/CAL.dir/src/SharePoint.cpp.o" \
 "CMakeFiles/CAL.dir/src/VertexData.cpp.o"
 
@@ -268,12 +243,11 @@ CAL: CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o
 CAL: CMakeFiles/CAL.dir/src/main.cpp.o
 CAL: CMakeFiles/CAL.dir/src/Application.cpp.o
 CAL: CMakeFiles/CAL.dir/src/Menus.cpp.o
-CAL: CMakeFiles/CAL.dir/src/NodeInfo.cpp.o
 CAL: CMakeFiles/CAL.dir/src/SharePoint.cpp.o
 CAL: CMakeFiles/CAL.dir/src/VertexData.cpp.o
 CAL: CMakeFiles/CAL.dir/build.make
 CAL: CMakeFiles/CAL.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable CAL"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable CAL"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CAL.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -286,7 +260,6 @@ CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/main.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/Application.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/Menus.cpp.o.requires
-CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/NodeInfo.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/SharePoint.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/VertexData.cpp.o.requires
 

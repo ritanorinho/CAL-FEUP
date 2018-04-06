@@ -231,33 +231,6 @@ src/Menus.cpp.s:
 	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Menus.cpp.s
 .PHONY : src/Menus.cpp.s
 
-src/NodeInfo.o: src/NodeInfo.cpp.o
-
-.PHONY : src/NodeInfo.o
-
-# target to build an object file
-src/NodeInfo.cpp.o:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/NodeInfo.cpp.o
-.PHONY : src/NodeInfo.cpp.o
-
-src/NodeInfo.i: src/NodeInfo.cpp.i
-
-.PHONY : src/NodeInfo.i
-
-# target to preprocess a source file
-src/NodeInfo.cpp.i:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/NodeInfo.cpp.i
-.PHONY : src/NodeInfo.cpp.i
-
-src/NodeInfo.s: src/NodeInfo.cpp.s
-
-.PHONY : src/NodeInfo.s
-
-# target to generate assembly for a file
-src/NodeInfo.cpp.s:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/NodeInfo.cpp.s
-.PHONY : src/NodeInfo.cpp.s
-
 src/SharePoint.o: src/SharePoint.cpp.o
 
 .PHONY : src/SharePoint.o
@@ -360,9 +333,6 @@ help:
 	@echo "... src/Menus.o"
 	@echo "... src/Menus.i"
 	@echo "... src/Menus.s"
-	@echo "... src/NodeInfo.o"
-	@echo "... src/NodeInfo.i"
-	@echo "... src/NodeInfo.s"
 	@echo "... src/SharePoint.o"
 	@echo "... src/SharePoint.i"
 	@echo "... src/SharePoint.s"

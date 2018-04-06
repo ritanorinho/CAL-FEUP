@@ -4,7 +4,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/CAL.dir/src/main.cpp.o"
   "CMakeFiles/CAL.dir/src/Application.cpp.o"
   "CMakeFiles/CAL.dir/src/Menus.cpp.o"
-  "CMakeFiles/CAL.dir/src/NodeInfo.cpp.o"
   "CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
   "CMakeFiles/CAL.dir/src/VertexData.cpp.o"
   "CAL.pdb"

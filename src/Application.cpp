@@ -138,15 +138,17 @@ void Application::createRoad(string line) {
 
 
 void Application::createSharePoint(string line) {
-	string node_id, bicycle_count;
+	string node_id, bicycle_count, max_bicycle;
 
 	node_id = line.substr(0, line.find(';'));
     line = line.erase(0, line.find(';') + 1);
     bicycle_count = line.substr(0, line.find(';'));
+    line = line.erase(0, line.find(';') + 1);
+    max_bicycle = line.substr(0, line.find(';'));
 
     int initial_price = 20; //Initial price for all sharepoints
 
-    SharePoint sp(stoi(bicycle_count),initial_price);
+    SharePoint sp(stoi(bicycle_count),initial_price,stoi(max_bicycle));
 
     VertexData v_finder(stol(node_id));
 
@@ -213,12 +215,26 @@ void Application::start() {
 
     vector<VertexData> res = graph.findNearestSharepoint(v_finder);
 
+    cout << "Shortest path: " << endl;
     for(auto vd:res){
         cout << vd.getId() << ";";
     }
     cout << endl;
 
+    vector<vector<VertexData>> res_r = graph.findNearestSharepoints(v_finder);
+
+    cout << "List of paths: " << endl;
+    for(auto ress:res_r){
+        for(auto vd:ress) {
+            cout << vd.getId() << ";";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
     visualizeGraph();
+
+    graph.isStronglyConnected();
 }
 
 void Application::visualizeGraph(){

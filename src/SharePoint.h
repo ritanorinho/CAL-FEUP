@@ -13,10 +13,12 @@ class SharePoint {
 	int currentPrice;
 public:
 	SharePoint();
-	SharePoint(int bicycles, int priceDay);
+	SharePoint(int bicycles, int priceDay, int max_bicycle);
 	int getBicycles() const;
+	bool dropBicycle();
+	bool pickBicycle();
 	void setBicycles(int bicycles);
 	int getCurrentPrice() const;
 	void setCurrentPrice(int currentPrice);
-	bool operator==(SharePoint &sp);
+    int max_bicycle;
 };

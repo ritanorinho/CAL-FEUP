@@ -145,6 +145,11 @@ public:
 	vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;
 
     vector<T> findNearestSharepoint(const T &origin);
+    vector<vector<T>> findNearestSharepoints(const T &origin);
+
+    void isStronglyConnected(Vertex<T> *vertex, vector<Vertex<T>*> *visited);
+
+    bool isStronglyConnected();
 };
 
 template<class T>
@@ -291,9 +296,7 @@ vector<T> Graph<T>::findNearestSharepoint(const T &origin) {
 
     while(!q.empty()){
         v = q.extractMin();
-        cout << "Now on vertex: " << v->getInfo().getId() << endl;
         if(v->getInfo().getSharePoint().getBicycles() != -1 && v->getInfo().getSharePoint().getCurrentPrice() != -1){
-            cout << "Found sharepoint: " << v->getInfo().getSharePoint().getBicycles() << " / " << v->getInfo().getSharePoint().getCurrentPrice() << endl;
             return getPath(origin,v->getInfo());
         }
         for(auto edge : v->adj){
@@ -312,6 +315,50 @@ vector<T> Graph<T>::findNearestSharepoint(const T &origin) {
     }
 
     return vector<T>();
+}
+
+template<class T>
+vector<vector<T>> Graph<T>::findNearestSharepoints(const T &origin) {
+
+    vector<vector<T>> ret;
+
+    MutablePriorityQueue<Vertex<T>> q;
+
+    for(auto v : this->vertexSet){
+        v->dist = INF;
+        v->path = nullptr;
+        v->queueIndex = -1;
+    }
+
+    Vertex<T> *originVertex = findVertex(origin);
+
+    originVertex->dist = 0;
+    originVertex->queueIndex = 0;
+    q.insert(originVertex);
+
+    Vertex<T> *v;
+
+    while(!q.empty()){
+        v = q.extractMin();
+        if(v->getInfo().getSharePoint().getBicycles() != -1 && v->getInfo().getSharePoint().getCurrentPrice() != -1){
+            ret.push_back(getPath(origin,v->getInfo()));
+        }
+        for(auto edge : v->adj){
+            Vertex<T> *w = edge.dest;
+            if(w->dist > (v->dist + edge.weight)){
+                double oldDist = w->dist;
+                w->dist = v->dist + edge.weight;
+                w->path = v;
+                if(oldDist == INF){
+                    q.insert(w);
+                }else{
+                    q.decreaseKey(w);
+                }
+            }
+        }
+    }
+
+    return ret;
 }
 
 template<class T>
@@ -341,6 +388,70 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
     reverse(res.begin(),res.end());
 
     return res;
+}
+
+template<class T>
+bool Graph<T>::isStronglyConnected() { //DFS
+    vector<Vertex<T>*> visited;
+    Vertex<T> *startSharePoint;
+
+    for(auto ver: getVertexSet()){
+        for(auto edge: ver->getAdj()){
+            if(edge.dest->getInfo().getSharePoint().getBicycles() > 0){
+                startSharePoint = edge.dest;
+            }
+        }
+    }
+
+    if (startSharePoint == nullptr){
+        cout << "Could not find any accessible sharepoints" << endl;
+        return false;
+    }
+
+    isStronglyConnected(startSharePoint,&visited);
+
+    if(visited.size() == getVertexSet().size()){
+        cout << "Graph is fully connected" << endl;
+        return true;
+    }
+
+    int sharePointNum = 0;
+
+    for(auto ver: getVertexSet()){
+        if(ver->getInfo().getSharePoint().getBicycles() > 0){
+            sharePointNum++;
+        }
+    }
+
+    for(auto ver: visited){
+        if(ver->getInfo().getSharePoint().getBicycles() > 0){
+            sharePointNum--;
+        }
+    }
+
+    if(sharePointNum == 0){
+        cout << "Graph is not fully connected but all sharepoints are accessible" << endl;
+        return true;
+    }else if(sharePointNum < 0){
+        cout << "Error: Visited set is larger than graph vertex list" << endl;
+        return false;
+    }else{
+        cout << "Graph is not fully connected and not every sharepoint is accessible" << endl;
+    }
+
+}
+
+
+template<class T>
+void Graph<T>::isStronglyConnected(Vertex<T> *vertex,vector<Vertex<T> *> *visited){ //DFS
+
+    visited->push_back(vertex);
+
+    for(Edge next: vertex->getAdj()){
+        if(std::find(visited->begin(),visited->end(),next.getDest()) == visited->end()){
+            isStronglyConnected(next.getDest(),visited);
+        }
+    }
 }
 
 template<class T>

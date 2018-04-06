@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o"
   "/Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o"
   "/Users/davidreis/CLionProjects/CAL/src/Menus.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/Menus.cpp.o"
-  "/Users/davidreis/CLionProjects/CAL/src/NodeInfo.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/NodeInfo.cpp.o"
   "/Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
   "/Users/davidreis/CLionProjects/CAL/src/VertexData.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/VertexData.cpp.o"
   "/Users/davidreis/CLionProjects/CAL/src/main.cpp" "/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/src/main.cpp.o"

@@ -243,15 +243,7 @@ void Application::rentBicycle(){
     cout << endl;
 
 }
-void Application::applyDiscount(){
 
-    for (auto v : )
-        if (v.getSharePoint().getBicycles()<4){
-            v.getSharePoint().setCurrentPrice(v.getSharePoint().getCurrentPrice()*0.75);
-        }
-
-    }
-}
 void Application::dropBicycle() {
     VertexData v_finder(2);
 

@@ -12,14 +12,14 @@ using namespace std;
 class Client {
 private:
     int id;
-    Bicycle bicycle;
+    int  bicycleId;
     string  paymentMethod;
     int paymentNumber;
 
 public:
-    Client(int id, Bicycle bicycle, string paymentMethod, int paymentNumber);
+    Client(int id, int bicycleId, string paymentMethod, int paymentNumber);
     int getId();
-    Bicycle getBicycle();
+    int getBicycleId();
     string getPaymentMethod();
     int getPaymentNumber();
 

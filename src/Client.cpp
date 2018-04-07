@@ -3,17 +3,17 @@
 //
 
 #include "Client.h"
-Client::Client(int id, Bicycle bicycle, string paymentMethod, int paymentNumber) {
+Client::Client(int id, int bicycleId, string paymentMethod, int paymentNumber) {
 	this->id = id;
-	this->bicycle = bicycle;
+	this->bicycleId = bicycleId;
 	this->paymentMethod = paymentMethod;
 	this->paymentNumber = paymentNumber;
 }
 int Client::getId() {
 	return id;
 }
-Bicycle Client::getBicycle() {
-	return bicycle;
+int Client::getBicycleId() {
+	return bicycleId;
 }
 string Client::getPaymentMethod() {
 	return paymentMethod;

@@ -5,6 +5,7 @@
 #include "Graph.h"
 #include "VertexData.h"
 #include <vector>
+#include <math.h>
 #include <fstream>
 #include <iostream>
 
@@ -24,6 +25,9 @@ public:
 
     double getDist(VertexData v1, VertexData v2);
 
+    void rentBicycle();
+    void dropBicycle();
+    void applyDiscount();
     void visualizeGraph();
 };
 

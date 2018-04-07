@@ -211,16 +211,8 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
+    rentBicycle();
     VertexData v_finder(2);
-
-    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
-
-    cout << "Shortest path: " << endl;
-    for(auto vd:res){
-        cout << vd.getId() << ";";
-    }
-    cout << endl;
-
     vector<vector<VertexData>> res_r = graph.findNearestSharepoints(v_finder);
 
     cout << "List of paths: " << endl;
@@ -236,13 +228,49 @@ void Application::start() {
 
     graph.isStronglyConnected();
 }
+void Application::rentBicycle(){
+    VertexData v_finder(2);
 
+    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
+    for (size_t i =0;i< res.size();i++){
+        if (res.at(i).getSharePoint().getBicycles()==0)
+            res.erase(res.begin()+i);
+    }
+    cout << "Shortest path: " << endl;
+    for(auto vd:res){
+        cout << vd.getId() << ";";
+    }
+    cout << endl;
+
+}
+void Application::applyDiscount(){
+
+    for (auto v : )
+        if (v.getSharePoint().getBicycles()<4){
+            v.getSharePoint().setCurrentPrice(v.getSharePoint().getCurrentPrice()*0.75);
+        }
+
+    }
+}
+void Application::dropBicycle() {
+    VertexData v_finder(2);
+
+    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
+    for (size_t i =0;i< res.size();i++){
+        if (res.at(i).getSharePoint().getBicycles()==res.at(i).getSharePoint().max_bicycle)
+            res.erase(res.begin()+i);
+    }
+    cout << "Shortest path: " << endl;
+    for(auto vd:res){
+        cout << vd.getId() << ";";
+    }
+    cout << endl;
+}
 void Application::visualizeGraph(){
     int xres = 1440;
     int yres = 900;
     GraphViewer *gv = new GraphViewer(xres, yres, true);
     gv->createWindow(xres, yres);
-
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
 

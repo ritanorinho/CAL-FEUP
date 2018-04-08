@@ -5,7 +5,6 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
-#include "Bicycle.h"
 
 using namespace std;
 

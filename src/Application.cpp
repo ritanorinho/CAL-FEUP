@@ -211,6 +211,8 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
+    loadClients();
+
     rentBicycle();
     VertexData v_finder(2);
     vector<vector<VertexData>> res_r = graph.findNearestSharepoints(v_finder);
@@ -224,7 +226,7 @@ void Application::start() {
     }
     cout << endl;
 
-    visualizeGraph();
+    //visualizeGraph();
 
     graph.isStronglyConnected();
 }
@@ -310,4 +312,121 @@ void Application::visualizeGraph(){
     }
 
     gv->rearrange();
+}
+
+void Application ::loadClients() {
+    string path = "clients.txt";
+    ifstream ifs;
+    ifs.open(path);
+
+    string line;
+
+    if (!ifs.is_open())
+    {
+        cerr << "Error loading the Clients File" << endl;
+    }
+    else{
+        while(getline(ifs, line)){
+            createClient(line);
+        }
+    }
+
+    ifs.close();
+
+}
+
+void Application ::createClient(string line) {
+    int id;
+    int  bicycleId;
+    string  paymentMethod;
+    int paymentNumber;
+
+    id = stoi(line.substr(0, line.find(';')));
+    line = line.erase(0, line.find(';') + 1);
+    bicycleId = stoi(line.substr(0, line.find(';')));
+    line = line.erase(0, line.find(';') + 1);
+    paymentMethod = line.substr(0, line.find(';'));
+    line = line.erase(0, line.find(';') + 1);
+    paymentNumber = stoi(line.substr(0, line.find(';')));
+
+    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    this->clientList.push_back(c);
+}
+
+void Application :: listSharePoints()
+{
+    for (auto v : this->graph.getVertexSet())
+    {
+        int n = 0;
+        if (v->getInfo().getSharePoint().getBicycles() != -1)
+            n = v->getInfo().getSharePoint().getBicycles();
+
+        cout << "SharePoint ID: " << v->getInfo().getId() << "\t Number of Bicycles: " << n << endl;
+    }
+}
+
+void Application :: listClients()
+{
+    for (int i = 0; i < this->clientList.size(); i++)
+    {
+        cout << "Client ID: " << this->clientList[i].getId() << "\t Bicycle ID: "<< this->clientList[i].getBicycleId() << "\t Payment Method: "<< this->clientList[i].getPaymentMethod() << "\t Payment Number: " <<this->clientList[i].getPaymentNumber() << endl;
+    }
+}
+
+void Application :: addNode()
+{
+
+}
+
+void Application :: addRoad()
+{
+
+}
+
+void Application :: addSubRoad()
+{
+
+}
+
+void Application :: addSharePoint()
+{
+
+}
+
+void Application :: addBicycle()
+{
+    int id, n;
+    cout << "SharePoint ID: ";
+    cin >> id;
+    cout << "Number of Bicycles: ";
+    cin >> n;
+
+    for (auto v : this->graph.getVertexSet())
+    {
+        if(v->getInfo().getId() == id)
+        {
+            n += v->getInfo().getSharePoint().getBicycles();
+            //v->getInfo().getSharePoint().setBicycles(n);
+        }
+    }
+}
+
+void Application :: addClient()
+{
+    int id;
+    int  bicycleId;
+    string  paymentMethod;
+    int paymentNumber;
+
+    cout << "Client ID: ";
+    cin >> id;
+    cout << "Bicycle ID: ";
+    cin >> bicycleId;
+    cout << "Payment Method: ";
+    getline(cin, paymentMethod);
+    cout << "Payment Number: ";
+    cin >> paymentNumber;
+
+    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    this->clientList.push_back(c);
 }

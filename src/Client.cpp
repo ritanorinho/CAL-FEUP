@@ -16,9 +16,9 @@ int Client::getBicycleId() {
 	return bicycleId;
 }
 string Client::getPaymentMethod() {
-	return paymentMethod;
+	return this->paymentMethod;
 }
 int Client::getPaymentNumber() {
-	return paymentNumber;
+	return this->paymentNumber;
 }
 

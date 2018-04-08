@@ -41,13 +41,9 @@ void Menu ::viewMenu(){
     cout << "--------|| View Menu ||--------" << endl << endl;
     cout << " Please choose one of the following options: " << endl << endl;
     cout << "1 - View Full Graph;" << endl;
-    cout << "2 - List Roads;" << endl;
-    cout << "3 - List Nodes;" << endl;
-    cout << "4 - List SubRoads;" << endl;
-    cout << "5 - List SharePoints;"<< endl;
-    cout << "6 - List Bicycles; " << endl;
-    cout << "7 - List Clients;" << endl;
-    cout << "8 - Back to Main Menu" << endl;
+    cout << "2 - List Clients;" << endl;
+    cout << "3 - List Bicycles;" << endl;
+    cout << "4 - Back to Main Menu" << endl;
     cout << "Option: ";
 
     string op;
@@ -56,29 +52,78 @@ void Menu ::viewMenu(){
 
     switch (n){
         case 1:
-            //viewGraph();
+            this->app.visualizeGraph();
+            viewMenu();
             break;
         case 2:
-            //TODO
+            this->app.listClients();
+            viewMenu();
             break;
         case 3:
-            returnMenu();
+            this->app.listSharePoints();
+            viewMenu();
             break;
         case 4:
-            nearestPointMenu();
-            break;
-        case 5:
-            exit(0);
-        case 6:
-            //TODO
+            this->mainMenu();
             break;
     }
 }
 
-void Menu :: addMenu(){}
+void Menu :: addMenu(){
 
-void Menu :: returnMenu(){}
+    cout << "--------|| Add Menu ||--------" << endl << endl;
+    cout << " Please choose one of the following options: " << endl << endl;
+    cout << "1 - Add Node;" << endl;
+    cout << "2 - Add Road;" << endl;
+    cout << "3 - Add SubRoad;" << endl;
+    cout << "4 - Set New SharePoint;" << endl;
+    cout << "5 - Add Bicycle;" << endl;
+    cout << "6 - Add Client;"<< endl;
+    cout << "7 - Back to Main Menu" << endl;
+    cout << "Option: ";
+
+    string op;
+    cin >> op;
+    int n = stoi(op);
+
+    switch (n){
+        case 1:
+            this->app.addNode();
+            addMenu();
+            break;
+        case 2:
+            this->app.addRoad();
+            addMenu();
+            break;
+        case 3:
+            this->app.addSubRoad();
+            addMenu();
+            break;
+        case 4:
+            this->app.addSharePoint();
+            addMenu();
+            break;
+        case 5:
+            this->app.addBicycle();
+            addMenu();
+            break;
+        case 6:
+            this->app.addClient();
+            addMenu();
+            break;
+        case 7:
+            this->mainMenu();
+            break;
+    }
+
+}
+
+void Menu :: returnMenu(){
+    cout << "--------|| Return Bicycle Menu ||--------" << endl << endl;
+
+}
 
 void Menu :: nearestPointMenu(){
+    cout << "--------|| Nearest Point Menu ||--------" << endl << endl;
 
 }

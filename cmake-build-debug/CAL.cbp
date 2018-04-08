@@ -8,129 +8,131 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/davidreis/CLionProjects/CAL/cmake-build-debug"/>
+				<Option working_dir="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/davidreis/CLionProjects/CAL/cmake-build-debug"/>
+				<Option working_dir="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/davidreis/CLionProjects/CAL/cmake-build-debug"/>
+				<Option working_dir="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CAL">
-				<Option output="/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CAL" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/davidreis/CLionProjects/CAL/cmake-build-debug"/>
+				<Option output="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CAL" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 CAL"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 CAL"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CAL/fast">
-				<Option output="/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CAL" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/davidreis/CLionProjects/CAL/cmake-build-debug"/>
+				<Option output="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CAL" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 CAL/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/davidreis/CLionProjects/CAL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 CAL/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/Application.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Application.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/Application.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Application.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/Graph.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Client.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Client.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Graph.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/GraphViewer/edgetype.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/connection.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/connection.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/edgetype.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/Menus.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/graphviewer.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/Menus.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/graphviewer.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/MutablePriorityQueue.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Menus.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/Menus.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/SharePoint.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/MutablePriorityQueue.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/VertexData.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/SharePoint.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/VertexData.h">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/SharePoint.h">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/src/main.cpp">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/VertexData.cpp">
 			<Option target="CAL"/>
 		</Unit>
-		<Unit filename="/Users/davidreis/CLionProjects/CAL/CMakeLists.txt">
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/VertexData.h">
+			<Option target="CAL"/>
+		</Unit>
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/src/main.cpp">
+			<Option target="CAL"/>
+		</Unit>
+		<Unit filename="/Users/ff/Desktop/CAL/CAL-FEUP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

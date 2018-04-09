@@ -9,6 +9,7 @@ add_executable(CAL
         src/GraphViewer/graphviewer.cpp
 
         src/main.cpp
+        src/Client.cpp
         src/Application.cpp
         src/Graph.h
         src/Menus.cpp

@@ -4,9 +4,8 @@
 
 #include "VertexData.h"
 
-VertexData::VertexData(long id, double latitudeDegrees, double longitudeDegrees, double latitudeRadians, double longitudeRadians, double height)
-        : id(id), latitudeDegrees(latitudeDegrees), longitudeDegrees(longitudeDegrees),
-          latitudeRadians(latitudeRadians), longitudeRadians(longitudeRadians), sharePoint(), height(height){}
+VertexData::VertexData(long id, double x, double y, double height)
+        : id(id), x(x), y(y), sharePoint(), height(height){}
 
 VertexData::VertexData(long id) : id(id){}
 
@@ -24,38 +23,6 @@ long VertexData::getId() {
 
 void VertexData::setId(long id) {
     VertexData::id = id;
-}
-
-double VertexData::getLatitudeDegrees() const {
-    return latitudeDegrees;
-}
-
-void VertexData::setLatitudeDegrees(double latitudeDegrees) {
-    VertexData::latitudeDegrees = latitudeDegrees;
-}
-
-double VertexData::getLongitudeDegrees() const {
-    return longitudeDegrees;
-}
-
-void VertexData::setLongitudeDegrees(double longitudeDegrees) {
-    VertexData::longitudeDegrees = longitudeDegrees;
-}
-
-double VertexData::getLatitudeRadians() const {
-    return latitudeRadians;
-}
-
-void VertexData::setLatitudeRadians(double latitudeRadians) {
-    VertexData::latitudeRadians = latitudeRadians;
-}
-
-double VertexData::getLongitudeRadians() const {
-    return longitudeRadians;
-}
-
-void VertexData::setLongitudeRadians(double longitudeRadians) {
-    VertexData::longitudeRadians = longitudeRadians;
 }
 
 bool VertexData::operator==(const VertexData& rhs)const{

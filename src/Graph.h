@@ -449,7 +449,7 @@ void Graph<T>::isStronglyConnected(Vertex<T> *vertex,vector<Vertex<T> *> *visite
 
     for(Edge next: vertex->getAdj()){
         if(std::find(visited->begin(),visited->end(),next.getDest()) == visited->end()){
-            //isStronglyConnected(next.getDest(),visited);
+            isStronglyConnected(next.getDest(),visited);
         }
     }
 }

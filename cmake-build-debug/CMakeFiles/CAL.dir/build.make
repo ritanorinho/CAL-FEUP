@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ff/Desktop/CAL/CAL-FEUP
+CMAKE_SOURCE_DIR = /Users/davidreis/CLionProjects/CAL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/davidreis/CLionProjects/CAL/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CAL.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/CAL.dir/flags.make
 
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o: ../src/GraphViewer/connection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/connection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.cpp
 
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/connection.cpp > CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.cpp > CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.i
 
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/connection.cpp -o CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.cpp -o CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.s
 
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o.provides.build: CMakeFiles/C
 
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o: ../src/GraphViewer/graphviewer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/graphviewer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.cpp
 
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/graphviewer.cpp > CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.cpp > CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.i
 
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/GraphViewer/graphviewer.cpp -o CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.cpp -o CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.s
 
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/CAL.dir/src/main.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CAL.dir/src/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/main.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CAL.dir/src/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/main.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/main.cpp
 
 CMakeFiles/CAL.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/main.cpp > CMakeFiles/CAL.dir/src/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/main.cpp > CMakeFiles/CAL.dir/src/main.cpp.i
 
 CMakeFiles/CAL.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/main.cpp -o CMakeFiles/CAL.dir/src/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/main.cpp -o CMakeFiles/CAL.dir/src/main.cpp.s
 
 CMakeFiles/CAL.dir/src/main.cpp.o.requires:
 
@@ -129,42 +129,18 @@ CMakeFiles/CAL.dir/src/main.cpp.o.provides: CMakeFiles/CAL.dir/src/main.cpp.o.re
 CMakeFiles/CAL.dir/src/main.cpp.o.provides.build: CMakeFiles/CAL.dir/src/main.cpp.o
 
 
-CMakeFiles/CAL.dir/src/Client.cpp.o: CMakeFiles/CAL.dir/flags.make
-CMakeFiles/CAL.dir/src/Client.cpp.o: ../src/Client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CAL.dir/src/Client.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/Client.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/Client.cpp
-
-CMakeFiles/CAL.dir/src/Client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/Client.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/Client.cpp > CMakeFiles/CAL.dir/src/Client.cpp.i
-
-CMakeFiles/CAL.dir/src/Client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/Client.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/Client.cpp -o CMakeFiles/CAL.dir/src/Client.cpp.s
-
-CMakeFiles/CAL.dir/src/Client.cpp.o.requires:
-
-.PHONY : CMakeFiles/CAL.dir/src/Client.cpp.o.requires
-
-CMakeFiles/CAL.dir/src/Client.cpp.o.provides: CMakeFiles/CAL.dir/src/Client.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Client.cpp.o.provides.build
-.PHONY : CMakeFiles/CAL.dir/src/Client.cpp.o.provides
-
-CMakeFiles/CAL.dir/src/Client.cpp.o.provides.build: CMakeFiles/CAL.dir/src/Client.cpp.o
-
-
 CMakeFiles/CAL.dir/src/Application.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/Application.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CAL.dir/src/Application.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/Application.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/Application.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CAL.dir/src/Application.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/Application.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/Application.cpp
 
 CMakeFiles/CAL.dir/src/Application.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/Application.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/Application.cpp > CMakeFiles/CAL.dir/src/Application.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/Application.cpp > CMakeFiles/CAL.dir/src/Application.cpp.i
 
 CMakeFiles/CAL.dir/src/Application.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/Application.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/Application.cpp -o CMakeFiles/CAL.dir/src/Application.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/Application.cpp -o CMakeFiles/CAL.dir/src/Application.cpp.s
 
 CMakeFiles/CAL.dir/src/Application.cpp.o.requires:
 
@@ -179,16 +155,16 @@ CMakeFiles/CAL.dir/src/Application.cpp.o.provides.build: CMakeFiles/CAL.dir/src/
 
 CMakeFiles/CAL.dir/src/Menus.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Menus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CAL.dir/src/Menus.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/Menus.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/Menus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CAL.dir/src/Menus.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/Menus.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/Menus.cpp
 
 CMakeFiles/CAL.dir/src/Menus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/Menus.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/Menus.cpp > CMakeFiles/CAL.dir/src/Menus.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/Menus.cpp > CMakeFiles/CAL.dir/src/Menus.cpp.i
 
 CMakeFiles/CAL.dir/src/Menus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/Menus.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/Menus.cpp -o CMakeFiles/CAL.dir/src/Menus.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/Menus.cpp -o CMakeFiles/CAL.dir/src/Menus.cpp.s
 
 CMakeFiles/CAL.dir/src/Menus.cpp.o.requires:
 
@@ -203,16 +179,16 @@ CMakeFiles/CAL.dir/src/Menus.cpp.o.provides.build: CMakeFiles/CAL.dir/src/Menus.
 
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o: ../src/SharePoint.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/SharePoint.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/SharePoint.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CAL.dir/src/SharePoint.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/SharePoint.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp
 
 CMakeFiles/CAL.dir/src/SharePoint.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/SharePoint.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/SharePoint.cpp > CMakeFiles/CAL.dir/src/SharePoint.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp > CMakeFiles/CAL.dir/src/SharePoint.cpp.i
 
 CMakeFiles/CAL.dir/src/SharePoint.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/SharePoint.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/SharePoint.cpp -o CMakeFiles/CAL.dir/src/SharePoint.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/SharePoint.cpp -o CMakeFiles/CAL.dir/src/SharePoint.cpp.s
 
 CMakeFiles/CAL.dir/src/SharePoint.cpp.o.requires:
 
@@ -227,16 +203,16 @@ CMakeFiles/CAL.dir/src/SharePoint.cpp.o.provides.build: CMakeFiles/CAL.dir/src/S
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.o: CMakeFiles/CAL.dir/flags.make
 CMakeFiles/CAL.dir/src/VertexData.cpp.o: ../src/VertexData.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CAL.dir/src/VertexData.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/VertexData.cpp.o -c /Users/ff/Desktop/CAL/CAL-FEUP/src/VertexData.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CAL.dir/src/VertexData.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CAL.dir/src/VertexData.cpp.o -c /Users/davidreis/CLionProjects/CAL/src/VertexData.cpp
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CAL.dir/src/VertexData.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ff/Desktop/CAL/CAL-FEUP/src/VertexData.cpp > CMakeFiles/CAL.dir/src/VertexData.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/davidreis/CLionProjects/CAL/src/VertexData.cpp > CMakeFiles/CAL.dir/src/VertexData.cpp.i
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CAL.dir/src/VertexData.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ff/Desktop/CAL/CAL-FEUP/src/VertexData.cpp -o CMakeFiles/CAL.dir/src/VertexData.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/davidreis/CLionProjects/CAL/src/VertexData.cpp -o CMakeFiles/CAL.dir/src/VertexData.cpp.s
 
 CMakeFiles/CAL.dir/src/VertexData.cpp.o.requires:
 
@@ -254,7 +230,6 @@ CAL_OBJECTS = \
 "CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o" \
 "CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o" \
 "CMakeFiles/CAL.dir/src/main.cpp.o" \
-"CMakeFiles/CAL.dir/src/Client.cpp.o" \
 "CMakeFiles/CAL.dir/src/Application.cpp.o" \
 "CMakeFiles/CAL.dir/src/Menus.cpp.o" \
 "CMakeFiles/CAL.dir/src/SharePoint.cpp.o" \
@@ -266,14 +241,13 @@ CAL_EXTERNAL_OBJECTS =
 CAL: CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o
 CAL: CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o
 CAL: CMakeFiles/CAL.dir/src/main.cpp.o
-CAL: CMakeFiles/CAL.dir/src/Client.cpp.o
 CAL: CMakeFiles/CAL.dir/src/Application.cpp.o
 CAL: CMakeFiles/CAL.dir/src/Menus.cpp.o
 CAL: CMakeFiles/CAL.dir/src/SharePoint.cpp.o
 CAL: CMakeFiles/CAL.dir/src/VertexData.cpp.o
 CAL: CMakeFiles/CAL.dir/build.make
 CAL: CMakeFiles/CAL.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable CAL"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable CAL"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CAL.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -284,7 +258,6 @@ CMakeFiles/CAL.dir/build: CAL
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/main.cpp.o.requires
-CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/Client.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/Application.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/Menus.cpp.o.requires
 CMakeFiles/CAL.dir/requires: CMakeFiles/CAL.dir/src/SharePoint.cpp.o.requires
@@ -297,6 +270,6 @@ CMakeFiles/CAL.dir/clean:
 .PHONY : CMakeFiles/CAL.dir/clean
 
 CMakeFiles/CAL.dir/depend:
-	cd /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ff/Desktop/CAL/CAL-FEUP /Users/ff/Desktop/CAL/CAL-FEUP /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles/CAL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/davidreis/CLionProjects/CAL/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/davidreis/CLionProjects/CAL /Users/davidreis/CLionProjects/CAL /Users/davidreis/CLionProjects/CAL/cmake-build-debug /Users/davidreis/CLionProjects/CAL/cmake-build-debug /Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/CAL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CAL.dir/depend
 

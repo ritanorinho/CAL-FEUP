@@ -92,22 +92,17 @@ void Application::createSubRoad(string line) {
 }
 
 double Application::getWeight(VertexData v1, VertexData v2){ //haversine formula + height difference
-    int R = 6371000; // earths radius
-    double latDiff = v2.getLatitudeRadians() - v1.getLatitudeRadians();
-    double longDiff = v2.getLongitudeRadians() - v1.getLongitudeRadians();
 
-
-    double a = sin(latDiff/2) * sin(latDiff/2) +
-            cos(v1.getLatitudeRadians()) * cos(v2.getLatitudeRadians()) *
-            sin(longDiff/2) * sin(longDiff/2);
-    double c = 2 * atan2(sqrt(a), sqrt(1-a));
+    double dist = sqrt((v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y));
 
     double heightDifference = v2.getHeight() - v1.getHeight();
 
-    if(heightDifference > (R * c)){
+    cout << "Distance between points is " << dist << " and height difference is " << heightDifference << endl;
+
+    if(heightDifference + dist < 0){
         return 0;
     }else{
-        return (R * c) + heightDifference;
+        return heightDifference + dist;
     }
 }
 
@@ -127,7 +122,7 @@ void Application::createRoad(string line) {
                 edge.setNome_rua(name);
 
                 if (isTwoWay[0] == 'T'){
-                    double weight = getWeight(vector->getInfo(), edge.getDest()->getInfo());
+                    double weight = getWeight(edge.getDest()->getInfo(), vector->getInfo());
 
                     Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,stol(id));
                     if(newEdge != nullptr){
@@ -163,21 +158,17 @@ void Application::createSharePoint(string line) {
 void Application::createNode(string line){
 
     long id;
-    double latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians, height;
+    double x, y, height;
 
     id = stol(line.substr(0, line.find(';')));
     line = line.erase(0, line.find(';') + 1);
-    latitudeDegrees = stod(line.substr(0, line.find(';')));
+    x = stod(line.substr(0, line.find(';')));
     line = line.erase(0, line.find(';') + 1);
-    longitudeDegrees = stod(line.substr(0, line.find(';')));
-    line = line.erase(0, line.find(';') + 1);
-    longitudeRadians = stod(line.substr(0, line.find(';')));
-    line = line.erase(0, line.find(';') + 1);
-    latitudeRadians = stod(line.substr(0, line.find(';')));
+    y = stod(line.substr(0, line.find(';')));
     line = line.erase(0, line.find(';') + 1);
     height = stod(line.substr(0, line.find(';')));
 
-    VertexData vertexData(id, latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians, height);
+    VertexData vertexData(id, x, y, height);
     this->graph.addVertex(vertexData);
 }
 
@@ -216,10 +207,16 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
-    loadClients();
-
-    rentBicycle();
     VertexData v_finder(2);
+
+    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
+
+    cout << "Shortest path: " << endl;
+    for(auto vd:res){
+        cout << vd.getId() << ";";
+    }
+    cout << endl;
+
     vector<vector<VertexData>> res_r = graph.findNearestSharepoints(v_finder);
 
     cout << "List of paths: " << endl;
@@ -231,71 +228,27 @@ void Application::start() {
     }
     cout << endl;
 
-    //visualizeGraph();
+    visualizeGraph();
 
     graph.isStronglyConnected();
 }
-void Application::rentBicycle(){
-    VertexData v_finder(2);
 
-    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
-    for (size_t i =0;i< res.size();i++){
-        if (res.at(i).getSharePoint().getBicycles()==0)
-            res.erase(res.begin()+i);
-    }
-    cout << "Shortest path: " << endl;
-    for(auto vd:res){
-        cout << vd.getId() << ";";
-    }
-    cout << endl;
-
+void Application::drawSolution(vector<VertexData> sol){
+    for(auto sol: )
 }
 
-void Application::dropBicycle() {
-    VertexData v_finder(2);
-
-    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
-    for (size_t i =0;i< res.size();i++){
-        if (res.at(i).getSharePoint().getBicycles()==res.at(i).getSharePoint().max_bicycle)
-            res.erase(res.begin()+i);
-    }
-    cout << "Shortest path: " << endl;
-    for(auto vd:res){
-        cout << vd.getId() << ";";
-    }
-    cout << endl;
-}
 void Application::visualizeGraph(){
     int xres = 1440;
     int yres = 900;
-    GraphViewer *gv = new GraphViewer(xres, yres, true);
+
+    this->gv = new GraphViewer(xres, yres, true);
+
     gv->createWindow(xres, yres);
+
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
 
-    double maxLat = -1;
-    double minLat = -1;
-    double maxLong = -1;
-    double minLong = -1;
-
     for(auto vertex: graph.getVertexSet()){
-        if(maxLat == -1 || vertex->getInfo().getLatitudeDegrees() > maxLat){
-            maxLat = vertex->getInfo().getLatitudeDegrees();
-        }
-        if(minLat == -1 || vertex->getInfo().getLatitudeDegrees() < minLat){
-            minLat = vertex->getInfo().getLatitudeDegrees();
-        }
-        if(maxLong == -1 || vertex->getInfo().getLongitudeDegrees() > maxLong){
-            maxLong = vertex->getInfo().getLongitudeDegrees();
-        }
-        if(minLong == -1 || vertex->getInfo().getLongitudeDegrees() < minLong){
-            minLong = vertex->getInfo().getLongitudeDegrees();
-        }
-    }
-
-    for(auto vertex: graph.getVertexSet()){
-        /*gv->addNode(vertex->getInfo().getId(),xres * (vertex->getInfo().getLatitudeDegrees() - minLat)/(maxLat-minLat),
-                                              yres * (vertex->getInfo().getLongitudeDegrees() - minLong)/(maxLong-minLong));*/
 
         if(vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getCurrentPrice() != -1){
             gv->setVertexColor(vertex->getInfo().getId(),"red");
@@ -309,7 +262,7 @@ void Application::visualizeGraph(){
 
     for(auto vertex: graph.getVertexSet()){
         for(auto edge: vertex->getAdj()){
-            gv->setEdgeLabel(edgeId,edge.weight);
+            gv->setEdgeLabel(edgeId,to_string(edge.weight));
 
             gv->addEdge(edgeId,vertex->getInfo().getId(),edge.getDest()->getInfo().getId(),EdgeType::DIRECTED);
             edgeId++;
@@ -317,199 +270,4 @@ void Application::visualizeGraph(){
     }
 
     gv->rearrange();
-}
-
-void Application ::loadClients() {
-    string path = "clients.txt";
-    ifstream ifs;
-    ifs.open(path);
-
-    string line;
-
-    if (!ifs.is_open())
-    {
-        cerr << "Error loading the Clients File" << endl;
-    }
-    else{
-        while(getline(ifs, line)){
-            createClient(line);
-        }
-    }
-
-    ifs.close();
-
-}
-
-void Application ::createClient(string line) {
-    int id;
-    int  bicycleId;
-    string  paymentMethod;
-    int paymentNumber;
-
-    id = stoi(line.substr(0, line.find(';')));
-    line = line.erase(0, line.find(';') + 1);
-    bicycleId = stoi(line.substr(0, line.find(';')));
-    line = line.erase(0, line.find(';') + 1);
-    paymentMethod = line.substr(0, line.find(';'));
-    line = line.erase(0, line.find(';') + 1);
-    paymentNumber = stoi(line.substr(0, line.find(';')));
-
-    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
-    this->clientList.push_back(c);
-}
-
-void Application :: listSharePoints()
-{
-    for (auto v : this->graph.getVertexSet())
-    {
-        int n = 0;
-        if (v->getInfo().getSharePoint().getBicycles() != -1)
-            n = v->getInfo().getSharePoint().getBicycles();
-
-        cout << "SharePoint ID: " << v->getInfo().getId() << "\t Number of Bicycles: " << n << endl;
-    }
-}
-
-void Application :: listClients()
-{
-    for (int i = 0; i < this->clientList.size(); i++)
-    {
-        cout << "Client ID: " << this->clientList[i].getId() << "\t Bicycle ID: "<< this->clientList[i].getBicycleId() << "\t Payment Method: "<< this->clientList[i].getPaymentMethod() << "\t Payment Number: " <<this->clientList[i].getPaymentNumber() << endl;
-    }
-}
-
-void Application :: addNode()
-{
-    long id;
-    double latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians;
-
-    cout << "Node ID: ";
-    cin >> id;
-    cout << "Latitude Degrees: ";
-    cin >> latitudeDegrees;
-    cout << "Longitude Degrees: ";
-    cin >> longitudeDegrees;
-    cout << "Latitude Radians: ";
-    cin >> latitudeRadians;
-    cout << "Longitude Radians: ";
-    cin >> longitudeRadians;
-
-    VertexData vertexData(id, latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians);
-    this->graph.addVertex(vertexData);
-
-}
-
-void Application :: addRoad()
-{
-    long id;
-    string name, isTwoWay;
-
-    cout << "Road ID: ";
-    cin >> id;
-    cout << "Road Name: ";
-    cin.ignore();
-    getline(cin, name);
-    cout << "Is Two Way? ";
-    cin >> isTwoWay;
-
-    for(Vertex<VertexData> *vector : graph.getVertexSet()){
-        for(auto &edge : vector->getAdj()){
-            if(edge.getId() == id){
-                edge.setNome_rua(name);
-
-                if (isTwoWay[0] == 'T'){
-                    //double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
-                    double weight = 1; //For testing only
-
-                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,id);
-                    if(newEdge != nullptr){
-                        newEdge->setNome_rua(name);
-                    }
-                }
-            }
-        }
-    }
-}
-
-void Application :: addSubRoad()
-{
-    long id, node1_id, node2_id;
-
-    cout << "SubRoad ID: ";
-    cin >> id;
-    cout << "First Node ID: ";
-    cin >> node1_id;
-    cout << "Second Node ID: ";
-    cin >> node2_id;
-
-    VertexData v1_finder(node1_id);
-    VertexData v2_finder(node2_id);
-
-    VertexData v1_real = graph.findVertex(v1_finder)->getInfo();
-    VertexData v2_real = graph.findVertex(v2_finder)->getInfo();
-
-    double weight = getDist(v1_real,v2_real);
-
-    graph.addEdge(v1_finder,v2_finder,weight,id);
-}
-
-void Application :: addSharePoint()
-{
-    string node_id, bicycle_count, max_bicycle;
-
-    cout << "Node ID: ";
-    cin >> node_id;
-    cout << "Bicycle Count: ";
-    cin >> bicycle_count;
-    cout << "Maximum Number of Bicycles: ";
-    cin >> max_bicycle;
-
-    int initial_price = 20; //Initial price for all sharepoints
-
-    SharePoint sp(stoi(bicycle_count),initial_price,stoi(max_bicycle));
-
-    VertexData v_finder(stol(node_id));
-
-    Vertex<VertexData> *v = graph.findVertex(v_finder);
-
-    v->getInfo().setSharePoint(sp);
-}
-
-void Application :: addBicycle()
-{
-    int id, n;
-    cout << "SharePoint ID: ";
-    cin >> id;
-    cout << "Number of Bicycles: ";
-    cin >> n;
-
-    for (auto v : this->graph.getVertexSet())
-    {
-        if(v->getInfo().getId() == id)
-        {
-            n += v->getInfo().getSharePoint().getBicycles();
-            //v->getInfo().getSharePoint().setBicycles(n);
-        }
-    }
-}
-
-void Application :: addClient()
-{
-    int id;
-    int  bicycleId;
-    string  paymentMethod;
-    int paymentNumber;
-
-    cout << "Client ID: ";
-    cin >> id;
-    cout << "Bicycle ID: ";
-    cin >> bicycleId;
-    cout << "Payment Method: ";
-    cin.ignore();
-    getline(cin, paymentMethod);
-    cout << "Payment Number: ";
-    cin >> paymentNumber;
-
-    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
-    this->clientList.push_back(c);
 }

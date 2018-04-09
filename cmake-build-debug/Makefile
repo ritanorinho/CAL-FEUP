@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ff/Desktop/CAL/CAL-FEUP
+CMAKE_SOURCE_DIR = /Users/davidreis/CLionProjects/CAL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/davidreis/CLionProjects/CAL/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles /Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/davidreis/CLionProjects/CAL/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,33 +149,6 @@ src/Application.s: src/Application.cpp.s
 src/Application.cpp.s:
 	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Application.cpp.s
 .PHONY : src/Application.cpp.s
-
-src/Client.o: src/Client.cpp.o
-
-.PHONY : src/Client.o
-
-# target to build an object file
-src/Client.cpp.o:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Client.cpp.o
-.PHONY : src/Client.cpp.o
-
-src/Client.i: src/Client.cpp.i
-
-.PHONY : src/Client.i
-
-# target to preprocess a source file
-src/Client.cpp.i:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Client.cpp.i
-.PHONY : src/Client.cpp.i
-
-src/Client.s: src/Client.cpp.s
-
-.PHONY : src/Client.s
-
-# target to generate assembly for a file
-src/Client.cpp.s:
-	$(MAKE) -f CMakeFiles/CAL.dir/build.make CMakeFiles/CAL.dir/src/Client.cpp.s
-.PHONY : src/Client.cpp.s
 
 src/GraphViewer/connection.o: src/GraphViewer/connection.cpp.o
 
@@ -351,9 +324,6 @@ help:
 	@echo "... src/Application.o"
 	@echo "... src/Application.i"
 	@echo "... src/Application.s"
-	@echo "... src/Client.o"
-	@echo "... src/Client.i"
-	@echo "... src/Client.s"
 	@echo "... src/GraphViewer/connection.o"
 	@echo "... src/GraphViewer/connection.i"
 	@echo "... src/GraphViewer/connection.s"

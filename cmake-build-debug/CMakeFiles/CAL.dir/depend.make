@@ -3,7 +3,6 @@
 
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/Application.cpp
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/Application.h
-CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/Client.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/Graph.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/GraphViewer/connection.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/GraphViewer/edgetype.h
@@ -11,9 +10,6 @@ CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/GraphViewer/graphviewer.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/MutablePriorityQueue.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/SharePoint.h
 CMakeFiles/CAL.dir/src/Application.cpp.o: ../src/VertexData.h
-
-CMakeFiles/CAL.dir/src/Client.cpp.o: ../src/Client.cpp
-CMakeFiles/CAL.dir/src/Client.cpp.o: ../src/Client.h
 
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o: ../src/GraphViewer/connection.cpp
 CMakeFiles/CAL.dir/src/GraphViewer/connection.cpp.o: ../src/GraphViewer/connection.h
@@ -24,7 +20,6 @@ CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o: ../src/GraphViewer/graphvi
 CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o: ../src/GraphViewer/graphviewer.h
 
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Application.h
-CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Client.h
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Graph.h
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Menus.cpp
 CMakeFiles/CAL.dir/src/Menus.cpp.o: ../src/Menus.h
@@ -40,7 +35,6 @@ CMakeFiles/CAL.dir/src/VertexData.cpp.o: ../src/VertexData.cpp
 CMakeFiles/CAL.dir/src/VertexData.cpp.o: ../src/VertexData.h
 
 CMakeFiles/CAL.dir/src/main.cpp.o: ../src/Application.h
-CMakeFiles/CAL.dir/src/main.cpp.o: ../src/Client.h
 CMakeFiles/CAL.dir/src/main.cpp.o: ../src/Graph.h
 CMakeFiles/CAL.dir/src/main.cpp.o: ../src/Menus.h
 CMakeFiles/CAL.dir/src/main.cpp.o: ../src/MutablePriorityQueue.h

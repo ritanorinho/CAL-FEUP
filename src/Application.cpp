@@ -375,22 +375,99 @@ void Application :: listClients()
 
 void Application :: addNode()
 {
+    long id;
+    double latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians;
+
+    cout << "Node ID: ";
+    cin >> id;
+    cout << "Latitude Degrees: ";
+    cin >> latitudeDegrees;
+    cout << "Longitude Degrees: ";
+    cin >> longitudeDegrees;
+    cout << "Latitude Radians: ";
+    cin >> latitudeRadians;
+    cout << "Longitude Radians: ";
+    cin >> longitudeRadians;
+
+    VertexData vertexData(id, latitudeDegrees, longitudeDegrees, longitudeRadians, latitudeRadians);
+    this->graph.addVertex(vertexData);
 
 }
 
 void Application :: addRoad()
 {
+    long id;
+    string name, isTwoWay;
 
+    cout << "Road ID: ";
+    cin >> id;
+    cout << "Road Name: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "Is Two Way? ";
+    cin >> isTwoWay;
+
+    for(Vertex<VertexData> *vector : graph.getVertexSet()){
+        for(auto &edge : vector->getAdj()){
+            if(edge.getId() == id){
+                edge.setNome_rua(name);
+
+                if (isTwoWay[0] == 'T'){
+                    //double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
+                    double weight = 1; //For testing only
+
+                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,id);
+                    if(newEdge != nullptr){
+                        newEdge->setNome_rua(name);
+                    }
+                }
+            }
+        }
+    }
 }
 
 void Application :: addSubRoad()
 {
+    long id, node1_id, node2_id;
 
+    cout << "SubRoad ID: ";
+    cin >> id;
+    cout << "First Node ID: ";
+    cin >> node1_id;
+    cout << "Second Node ID: ";
+    cin >> node2_id;
+
+    VertexData v1_finder(node1_id);
+    VertexData v2_finder(node2_id);
+
+    VertexData v1_real = graph.findVertex(v1_finder)->getInfo();
+    VertexData v2_real = graph.findVertex(v2_finder)->getInfo();
+
+    double weight = getDist(v1_real,v2_real);
+
+    graph.addEdge(v1_finder,v2_finder,weight,id);
 }
 
 void Application :: addSharePoint()
 {
+    string node_id, bicycle_count, max_bicycle;
 
+    cout << "Node ID: ";
+    cin >> node_id;
+    cout << "Bicycle Count: ";
+    cin >> bicycle_count;
+    cout << "Maximum Number of Bicycles: ";
+    cin >> max_bicycle;
+
+    int initial_price = 20; //Initial price for all sharepoints
+
+    SharePoint sp(stoi(bicycle_count),initial_price,stoi(max_bicycle));
+
+    VertexData v_finder(stol(node_id));
+
+    Vertex<VertexData> *v = graph.findVertex(v_finder);
+
+    v->getInfo().setSharePoint(sp);
 }
 
 void Application :: addBicycle()
@@ -423,6 +500,7 @@ void Application :: addClient()
     cout << "Bicycle ID: ";
     cin >> bicycleId;
     cout << "Payment Method: ";
+    cin.ignore();
     getline(cin, paymentMethod);
     cout << "Payment Number: ";
     cin >> paymentNumber;

@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "GraphViewer/graphviewer.h"
 
 class Application{
     Graph<VertexData> graph;
@@ -29,6 +30,8 @@ public:
     void drawSolution(vector<VertexData> sol);
 
     GraphViewer *gv;
+
+	void orderSolutionByPrice(vector<vector<VertexData>> &sol);
 };
 
 #endif //PROJECT1_APPLICATION_H

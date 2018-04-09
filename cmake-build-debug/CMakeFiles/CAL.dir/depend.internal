@@ -22,6 +22,9 @@ CMakeFiles/CAL.dir/src/GraphViewer/graphviewer.cpp.o
 CMakeFiles/CAL.dir/src/Menus.cpp.o
  /Users/davidreis/CLionProjects/CAL/src/Application.h
  /Users/davidreis/CLionProjects/CAL/src/Graph.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/edgetype.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.h
  /Users/davidreis/CLionProjects/CAL/src/Menus.cpp
  /Users/davidreis/CLionProjects/CAL/src/Menus.h
  /Users/davidreis/CLionProjects/CAL/src/MutablePriorityQueue.h
@@ -37,6 +40,9 @@ CMakeFiles/CAL.dir/src/VertexData.cpp.o
 CMakeFiles/CAL.dir/src/main.cpp.o
  /Users/davidreis/CLionProjects/CAL/src/Application.h
  /Users/davidreis/CLionProjects/CAL/src/Graph.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/connection.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/edgetype.h
+ /Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.h
  /Users/davidreis/CLionProjects/CAL/src/Menus.h
  /Users/davidreis/CLionProjects/CAL/src/MutablePriorityQueue.h
  /Users/davidreis/CLionProjects/CAL/src/SharePoint.h

@@ -98,7 +98,7 @@ class Edge {
 	Vertex<T> * dest;
 public:
     Vertex<T> *getDest() const;
-
+    long graphViewerId;
     void setDest(Vertex<T> *dest);
     double weight;         // edge weight
 
@@ -149,7 +149,7 @@ public:
 
     void isStronglyConnected(Vertex<T> *vertex, vector<Vertex<T>*> *visited);
 
-    bool isStronglyConnected();
+    bool isConnected();
 };
 
 template<class T>
@@ -391,7 +391,7 @@ vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
 }
 
 template<class T>
-bool Graph<T>::isStronglyConnected() { //DFS
+bool Graph<T>::isConnected() { //DFS
     vector<Vertex<T>*> visited;
     Vertex<T> *startSharePoint;
 

@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "GraphViewer/graphviewer.h"
 
 Application::Application() : graph(){}
 
@@ -207,34 +206,77 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
-    VertexData v_finder(2);
+    //Este VertexData serve apenas para encontrar o VertexData que esta guardado no grafo
+    VertexData v_finder(11);
 
-    vector<VertexData> res = graph.findNearestSharepoint(v_finder);
+    //Devolve vetor com o caminho ate ao sharepoint mais proximo do no que tem um id igual ao do v_finder (neste caso 11)
+    vector<VertexData> nearest = graph.findNearestSharepoint(v_finder);
 
     cout << "Shortest path: " << endl;
-    for(auto vd:res){
-        cout << vd.getId() << ";";
+    for(auto node:nearest){
+        cout << node.getId() << ";";
     }
     cout << endl;
 
-    vector<vector<VertexData>> res_r = graph.findNearestSharepoints(v_finder);
+    //Devolve um vetor com todos os caminhos mais proximos para cada um dos sharepoints, ordenado por distancia de forma crescente
+    vector<vector<VertexData>> nearest_list = graph.findNearestSharepoints(v_finder);
+
+    //Pega num vetor com todos os caminhos mais proximos para cada um dos sharepoints e reordena-o por ordem crescente de preço
+    orderSolutionByPrice(nearest_list);
 
     cout << "List of paths: " << endl;
-    for(auto ress:res_r){
-        for(auto vd:ress) {
-            cout << vd.getId() << ";";
+    for(auto solution:nearest_list){
+        for(auto node:solution) {
+            cout << node.getId() << ";";
         }
         cout << endl;
     }
     cout << endl;
 
+    //Desenha o grafo, sem caminho assinalado
     visualizeGraph();
 
-    graph.isStronglyConnected();
+    //Recebe um vetor que representa um caminho e assinala-o a verde no grafo
+    drawSolution(nearest);
+
+    //Devolve true se o grafo estiver connectado
+    graph.isConnected();
 }
 
 void Application::drawSolution(vector<VertexData> sol){
-    for(auto sol: )
+    for(auto vertex: sol) {
+        gv->setVertexColor(vertex.getId(), "green");
+    }
+
+    for(int i = 0; i < sol.size()-1; i++){
+        Vertex<VertexData> *v1 = graph.findVertex(sol.at(i));
+        Vertex<VertexData> *v2 = graph.findVertex(sol.at(i+1));
+
+        for(int j = 0; j < v1->adj.size(); j++){
+            if(v1->adj[j].getDest() == v2){
+                gv->setEdgeColor(v1->adj[j].graphViewerId,"green");
+                gv->setEdgeThickness(v1->adj[j].graphViewerId, 2);
+            }
+        }
+    }
+
+    gv->rearrange();
+}
+
+void Application::orderSolutionByPrice(vector<vector<VertexData>> &sol){
+    vector<VertexData> key;
+    for (int i = 1, j; i < sol.size(); i++)
+    {
+        key = sol[i];
+        j = i-1;
+
+        while (j >= 0 && sol[j][sol[j].size() - 1].getSharePoint().getCurrentPrice() > key[key.size()-1].getSharePoint().getCurrentPrice())
+        {
+            sol[j+1] = sol[j];
+            j = j-1;
+        }
+        sol[j+1] = key;
+    }
 }
 
 void Application::visualizeGraph(){
@@ -261,10 +303,12 @@ void Application::visualizeGraph(){
     long edgeId = 0;
 
     for(auto vertex: graph.getVertexSet()){
-        for(auto edge: vertex->getAdj()){
-            gv->setEdgeLabel(edgeId,to_string(edge.weight));
+        for(int j = 0; j < vertex->adj.size(); j++){
+            gv->setEdgeLabel(edgeId,to_string(vertex->adj[j].weight));
 
-            gv->addEdge(edgeId,vertex->getInfo().getId(),edge.getDest()->getInfo().getId(),EdgeType::DIRECTED);
+            vertex->adj[j].graphViewerId = edgeId;
+
+            gv->addEdge(edgeId,vertex->getInfo().getId(),vertex->adj[j].getDest()->getInfo().getId(),EdgeType::DIRECTED);
             edgeId++;
         }
     }

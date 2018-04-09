@@ -9,8 +9,6 @@
 /Users/davidreis/CLionProjects/CAL/src/Application.cpp
 Application.h
 /Users/davidreis/CLionProjects/CAL/src/Application.h
-GraphViewer/graphviewer.h
-/Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.h
 
 /Users/davidreis/CLionProjects/CAL/src/Application.h
 SharePoint.h
@@ -25,6 +23,8 @@ fstream
 -
 iostream
 -
+GraphViewer/graphviewer.h
+/Users/davidreis/CLionProjects/CAL/src/GraphViewer/graphviewer.h
 
 /Users/davidreis/CLionProjects/CAL/src/Graph.h
 vector

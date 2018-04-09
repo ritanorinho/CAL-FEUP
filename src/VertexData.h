@@ -17,11 +17,16 @@ private:
     double longitudeDegrees;
     double latitudeRadians;
     double longitudeRadians;
+    double height;
+public:
+    double getHeight() const;
+
+    void setHeight(double height);
 
 public:
     VertexData(long id);
-    VertexData(long id, double latitudeDegrees, double longitudeDegrees, double latitudeRadians, double longitudeRadians);
-    const SharePoint &getSharePoint() const;
+    VertexData(long id, double latitudeDegrees, double longitudeDegrees, double latitudeRadians, double longitudeRadians, double height);
+    SharePoint &getSharePoint();
     void setSharePoint(const SharePoint &sharePoint);
     long getId();
     void setId(long id);

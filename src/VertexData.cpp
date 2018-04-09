@@ -4,13 +4,13 @@
 
 #include "VertexData.h"
 
-VertexData::VertexData(long id, double latitudeDegrees, double longitudeDegrees, double latitudeRadians, double longitudeRadians)
+VertexData::VertexData(long id, double latitudeDegrees, double longitudeDegrees, double latitudeRadians, double longitudeRadians, double height)
         : id(id), latitudeDegrees(latitudeDegrees), longitudeDegrees(longitudeDegrees),
-          latitudeRadians(latitudeRadians), longitudeRadians(longitudeRadians), sharePoint() {}
+          latitudeRadians(latitudeRadians), longitudeRadians(longitudeRadians), sharePoint(), height(height){}
 
 VertexData::VertexData(long id) : id(id){}
 
-const SharePoint &VertexData::getSharePoint() const {
+SharePoint &VertexData::getSharePoint() {
     return sharePoint;
 }
 
@@ -60,4 +60,12 @@ void VertexData::setLongitudeRadians(double longitudeRadians) {
 
 bool VertexData::operator==(const VertexData& rhs)const{
     return (this->id==rhs.id);
+}
+
+double VertexData::getHeight() const {
+    return height;
+}
+
+void VertexData::setHeight(double height) {
+    VertexData::height = height;
 }

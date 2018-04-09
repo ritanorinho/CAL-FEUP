@@ -100,10 +100,10 @@ public:
     Vertex<T> *getDest() const;
 
     void setDest(Vertex<T> *dest);
+    double weight;         // edge weight
 
 private:
     // destination vertex
-	double weight;         // edge weight
 	long id;
     string nome_rua;
 public:
@@ -437,8 +437,8 @@ bool Graph<T>::isStronglyConnected() { //DFS
         return false;
     }else{
         cout << "Graph is not fully connected and not every sharepoint is accessible" << endl;
+        return false;
     }
-
 }
 
 

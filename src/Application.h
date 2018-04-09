@@ -22,7 +22,7 @@ public:
 	void loadSharePoints(string path);
     void createSharePoint(string line);
 
-    double getDist(VertexData v1, VertexData v2);
+    double getWeight(VertexData v1, VertexData v2);
 
     void visualizeGraph();
 };

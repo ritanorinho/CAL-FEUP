@@ -124,6 +124,11 @@ void Menu :: returnMenu(){
 }
 
 void Menu :: nearestPointMenu(){
-    cout << "--------|| Nearest Point Menu ||--------" << endl << endl;
-
+    cout << "--------|| Find Nearest Point Menu ||--------" << endl << endl;
+    cout << " Please choose one of the following options to optimize your travel: " << endl << endl;
+    cout << "1 - Distance;" << endl;
+    cout << "2 - Price;" << endl;
+    cout << "3 - Topology;" << endl << endl;
+    cout << "4 - Back to Main Menu" << endl;
+    cout << "Option: ";
 }

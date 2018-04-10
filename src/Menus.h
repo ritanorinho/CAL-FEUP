@@ -9,6 +9,7 @@ using namespace std;
 class Menu{
 private:
     Application app;
+    vector<vector<int>> roadsBlocked;
 public:
     Menu(Application app);
     void mainMenu();
@@ -18,6 +19,8 @@ public:
     void nearestPointMenu();
     void distanceOp();
     void priceOp();
+    void blockRoadMenu();
+    vector<vector<int>> getRoadsBlocked();
 };
 
 

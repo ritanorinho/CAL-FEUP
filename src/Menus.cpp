@@ -10,7 +10,8 @@ void Menu :: mainMenu(){
     cout << "2 - Add Data;" << endl;
     cout << "3 - Return Bicycle;" << endl;
     cout << "4 - Find nearest SharePoint;" << endl;
-    cout << "5 - Exit;"<< endl << endl;
+    cout << "5 - Block Road;"<< endl;
+    cout << "6 - Exit;" << endl << endl;
     cout << "Option: ";
 
     string op;
@@ -31,6 +32,9 @@ void Menu :: mainMenu(){
             nearestPointMenu();
             break;
         case 5:
+            blockRoadMenu();
+            break;
+        case 6:
             exit(0);
     }
 
@@ -53,7 +57,7 @@ void Menu ::viewMenu(){
 
     switch (n){
         case 1:
-            this->app.visualizeGraph();
+            this->app.viewGraph(this->roadsBlocked);
             viewMenu();
             break;
         case 2:
@@ -156,13 +160,46 @@ void Menu :: nearestPointMenu(){
     }
 }
 
+void Menu :: blockRoadMenu(){
+    int id1, id2;
+    cout << "--------|| Block Road Menu ||--------" << endl << endl;
+    cout << " Please choose th two nodes of the road you want to block: " << endl << endl;
+    cout << "First Node: " << endl;
+    cin >> id1;
+    cout << "Second Node: " << endl;
+    cin >> id2;
+    bool flag = false;
+
+    for (auto v : this->app.getGraph().getVertexSet())
+    {
+        if (v->getInfo().getId() == id1) {
+            for (auto e: v->getAdj()) {
+                if (e.getDest()->getInfo().getId() == id2)
+                    flag = true;
+            }
+        }
+    }
+
+    if (flag)
+    {
+        vector<int> r;
+        r.push_back(id1);
+        r.push_back(id2);
+        this->roadsBlocked.push_back(r);
+    }
+    else{
+        cout << endl <<"Error: The nodes you just chose do not form a valid road" << endl;
+    }
+    this->mainMenu();
+}
+
 void Menu ::distanceOp() {
     int id;
     cout << "Insert your current node ID: ";
     cin >> id;
     cout << "Calculating the best path ... " << endl;
 
-    this->app.drawGraph(id, false);
+    this->app.drawGraph(id, false, this->roadsBlocked);
 
 }
 
@@ -172,5 +209,9 @@ void Menu ::priceOp() {
     cin >> id;
     cout << "Calculating the best path ... " << endl;
 
-    this->app.drawGraph(id, true);
+    this->app.drawGraph(id, true, this->roadsBlocked);
+}
+
+vector<vector<int>> Menu ::getRoadsBlocked() {
+    return this->roadsBlocked;
 }

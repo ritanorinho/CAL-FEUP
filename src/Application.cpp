@@ -208,6 +208,39 @@ void Application::start() {
 
 }
 
+void Application :: drawUnableRoads(vector<vector<int>> v)
+{
+    if (v.size() == 0)
+        return;
+
+    int v1, v2;
+    for (unsigned int i = 0; i < v.size(); i++)
+    {
+        v1 = v[i][0];
+        v2 = v[i][1];
+
+        Vertex<VertexData> *vert1;
+
+        for (auto vert : this->graph.getVertexSet())
+        {
+            if (vert->getInfo().getId() == v1)
+            {
+                vert1 = vert;
+                for (int j = 0; j < vert->getAdj().size(); j++ )
+                {
+                    if (vert1->getAdj()[j].getDest()->getInfo().getId() == v2)
+                    {
+                        gv->setEdgeColor(vert1->adj[j].graphViewerId,"magenta");
+                        gv->setEdgeThickness(vert1->adj[j].graphViewerId, 2);
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+
 void Application::drawSolution(vector<VertexData> sol){
     for(auto vertex: sol) {
         gv->setVertexColor(vertex.getId(), "green");
@@ -257,9 +290,12 @@ void Application::visualizeGraph(){
 
     for(auto vertex: graph.getVertexSet()){
 
-        if(vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getCurrentPrice() != -1){
+        if(vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getCurrentPrice() != -1 && vertex->getInfo().getSharePoint().getBicycles() < 10){
             gv->setVertexColor(vertex->getInfo().getId(),"red");
         }
+
+        else if (vertex->getInfo().getSharePoint().getBicycles() != -1 && vertex->getInfo().getSharePoint().getCurrentPrice() != -1 &&vertex->getInfo().getSharePoint().getBicycles() >= 10)
+            gv->setVertexColor(vertex->getInfo().getId(),"magenta");
 
         gv->addNode(vertex->getInfo().getId());
 
@@ -323,14 +359,16 @@ void Application ::createClient(string line) {
 
 void Application :: listSharePoints()
 {
+    cout << endl;
     for (auto v : this->graph.getVertexSet())
     {
         int n = 0;
-        if (v->getInfo().getSharePoint().getBicycles() != -1)
+        if (v->getInfo().getSharePoint().getBicycles() != -1) {
             n = v->getInfo().getSharePoint().getBicycles();
-
-        cout << "SharePoint ID: " << v->getInfo().getId() << "\t Number of Bicycles: " << n << endl;
+            cout << "SharePoint ID: " << v->getInfo().getId() << "\t Number of Bicycles: " << n << endl;
+        }
     }
+    cout << endl;
 }
 
 void Application :: listClients()
@@ -479,7 +517,7 @@ void Application ::viewConnectivity() {
     this->graph.isConnected();
 }
 
-void Application ::drawGraph(int id, bool price)
+void Application ::drawGraph(int id, bool price, vector<vector<int>> vect)
 {
     //Este VertexData serve apenas para encontrar o VertexData que esta guardado no grafo
     VertexData v_finder(id);
@@ -511,5 +549,43 @@ void Application ::drawGraph(int id, bool price)
 
     //Recebe um vetor que representa um caminho e assinala-o a verde no grafo
     visualizeGraph();
-    drawSolution(nearest);
+    drawSolution(trimSolution(nearest_list, vect));
+    drawUnableRoads(vect);
+}
+
+Graph<VertexData> Application :: getGraph(){
+    return this->graph;
+}
+
+void Application ::viewGraph(vector<vector<int>> vect) {
+    visualizeGraph();
+    drawUnableRoads(vect);
+}
+
+vector<VertexData> Application ::trimSolution(vector<vector<VertexData>> vect, vector<vector<int>> id_vec) {
+
+    int index = 0;
+
+    auto it = vect.begin();
+    for (int m = 0; m < vect.size(); m++){
+        if (vect[m][vect.size()-1].getSharePoint().getBicycles() >= 10)
+            vect.erase(it);
+        it++;
+    }
+
+    for (int i = 0; i < vect.size(); i++)
+    {
+        for (int j = 0; j < vect[i].size(); j++)
+        {
+            for (int k = 0; k < id_vec.size(); k++)
+            {
+                if (vect[i][j].getId() == id_vec[k][0] && vect[i][j+1].getId() == id_vec[k][1]) {
+                    index++;
+                    i++;
+                }
+            }
+        }
+    }
+
+    return vect[index];
 }

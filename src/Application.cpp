@@ -96,8 +96,6 @@ double Application::getWeight(VertexData v1, VertexData v2){ //haversine formula
 
     double heightDifference = v2.getHeight() - v1.getHeight();
 
-    cout << "Distance between points is " << dist << " and height difference is " << heightDifference << endl;
-
     if(heightDifference + dist < 0){
         return 0;
     }else{
@@ -206,41 +204,8 @@ void Application::start() {
     loadSharePoints(sharePointsPath);
     cout << sharePointsPath << " loaded" << endl;
 
-    //Este VertexData serve apenas para encontrar o VertexData que esta guardado no grafo
-    VertexData v_finder(11);
+    loadClients();
 
-    //Devolve vetor com o caminho ate ao sharepoint mais proximo do no que tem um id igual ao do v_finder (neste caso 11)
-    vector<VertexData> nearest = graph.findNearestSharepoint(v_finder);
-
-    cout << "Shortest path: " << endl;
-    for(auto node:nearest){
-        cout << node.getId() << ";";
-    }
-    cout << endl;
-
-    //Devolve um vetor com todos os caminhos mais proximos para cada um dos sharepoints, ordenado por distancia de forma crescente
-    vector<vector<VertexData>> nearest_list = graph.findNearestSharepoints(v_finder);
-
-    //Pega num vetor com todos os caminhos mais proximos para cada um dos sharepoints e reordena-o por ordem crescente de preço
-    orderSolutionByPrice(nearest_list);
-
-    cout << "List of paths: " << endl;
-    for(auto solution:nearest_list){
-        for(auto node:solution) {
-            cout << node.getId() << ";";
-        }
-        cout << endl;
-    }
-    cout << endl;
-
-    //Desenha o grafo, sem caminho assinalado
-    visualizeGraph();
-
-    //Recebe um vetor que representa um caminho e assinala-o a verde no grafo
-    drawSolution(nearest);
-
-    //Devolve true se o grafo estiver connectado
-    graph.isConnected();
 }
 
 void Application::drawSolution(vector<VertexData> sol){
@@ -314,4 +279,237 @@ void Application::visualizeGraph(){
     }
 
     gv->rearrange();
+}
+
+
+void Application ::loadClients() {
+    string path = "clients.txt";
+    ifstream ifs;
+    ifs.open(path);
+
+    string line;
+
+    if (!ifs.is_open())
+    {
+        cerr << "Error loading the Clients File" << endl;
+    }
+    else{
+        while(getline(ifs, line)){
+            createClient(line);
+        }
+    }
+
+    ifs.close();
+
+}
+
+void Application ::createClient(string line) {
+    int id;
+    int  bicycleId;
+    string  paymentMethod;
+    int paymentNumber;
+
+    id = stoi(line.substr(0, line.find(';')));
+    line = line.erase(0, line.find(';') + 1);
+    bicycleId = stoi(line.substr(0, line.find(';')));
+    line = line.erase(0, line.find(';') + 1);
+    paymentMethod = line.substr(0, line.find(';'));
+    line = line.erase(0, line.find(';') + 1);
+    paymentNumber = stoi(line.substr(0, line.find(';')));
+
+    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    this->clientList.push_back(c);
+}
+
+void Application :: listSharePoints()
+{
+    for (auto v : this->graph.getVertexSet())
+    {
+        int n = 0;
+        if (v->getInfo().getSharePoint().getBicycles() != -1)
+            n = v->getInfo().getSharePoint().getBicycles();
+
+        cout << "SharePoint ID: " << v->getInfo().getId() << "\t Number of Bicycles: " << n << endl;
+    }
+}
+
+void Application :: listClients()
+{
+    for (int i = 0; i < this->clientList.size(); i++)
+    {
+        cout << "Client ID: " << this->clientList[i].getId() << "\t Bicycle ID: "<< this->clientList[i].getBicycleId() << "\t Payment Method: "<< this->clientList[i].getPaymentMethod() << "\t Payment Number: " <<this->clientList[i].getPaymentNumber() << endl;
+    }
+}
+
+void Application :: addNode()
+{
+    long id;
+    double x, y, height;
+
+    cout << "Node ID: ";
+    cin >> id;
+    cout << "Node X: ";
+    cin >> x;
+    cout << "Node Y: ";
+    cin >> y;
+    cout << "Node Height: ";
+    cin >> height;
+
+    VertexData vertexData(id, x, y, height);
+    this->graph.addVertex(vertexData);
+
+}
+
+void Application :: addRoad()
+{
+    long id;
+    string name, isTwoWay;
+
+    cout << "Road ID: ";
+    cin >> id;
+    cout << "Road Name: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "Is Two Way? ";
+    cin >> isTwoWay;
+
+    for(Vertex<VertexData> *vector : graph.getVertexSet()){
+        for(auto &edge : vector->getAdj()){
+            if(edge.getId() == id){
+                edge.setNome_rua(name);
+
+                if (isTwoWay[0] == 'T'){
+                    //double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
+                    double weight = 1; //For testing only
+
+                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,id);
+                    if(newEdge != nullptr){
+                        newEdge->setNome_rua(name);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void Application :: addSubRoad()
+{
+    long id, node1_id, node2_id;
+
+    cout << "SubRoad ID: ";
+    cin >> id;
+    cout << "First Node ID: ";
+    cin >> node1_id;
+    cout << "Second Node ID: ";
+    cin >> node2_id;
+
+    VertexData v1_finder(node1_id);
+    VertexData v2_finder(node2_id);
+
+    VertexData v1_real = graph.findVertex(v1_finder)->getInfo();
+    VertexData v2_real = graph.findVertex(v2_finder)->getInfo();
+
+    double weight = getWeight(v1_real, v2_real);
+
+    graph.addEdge(v1_finder,v2_finder,weight,id);
+}
+
+void Application :: addSharePoint()
+{
+    string node_id, bicycle_count, max_bicycle;
+
+    cout << "Node ID: ";
+    cin >> node_id;
+    cout << "Bicycle Count: ";
+    cin >> bicycle_count;
+    cout << "Maximum Number of Bicycles: ";
+    cin >> max_bicycle;
+
+    int initial_price = 20; //Initial price for all sharepoints
+
+    SharePoint sp(stoi(bicycle_count),initial_price,stoi(max_bicycle));
+
+    VertexData v_finder(stol(node_id));
+
+    Vertex<VertexData> *v = graph.findVertex(v_finder);
+
+    v->getInfo().setSharePoint(sp);
+}
+
+void Application :: addBicycle()
+{
+    int id, n;
+    cout << "SharePoint ID: ";
+    cin >> id;
+    cout << "Number of Bicycles: ";
+    cin >> n;
+
+    for (auto v : this->graph.getVertexSet())
+    {
+        if(v->getInfo().getId() == id)
+        {
+            n += v->getInfo().getSharePoint().getBicycles();
+            v->getInfo().getSharePoint().setBicycles(n);
+        }
+    }
+}
+
+void Application :: addClient()
+{
+    int id;
+    int  bicycleId;
+    string  paymentMethod;
+    int paymentNumber;
+
+    cout << "Client ID: ";
+    cin >> id;
+    cout << "Bicycle ID: ";
+    cin >> bicycleId;
+    cout << "Payment Method: ";
+    cin.ignore();
+    getline(cin, paymentMethod);
+    cout << "Payment Number: ";
+    cin >> paymentNumber;
+
+    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    this->clientList.push_back(c);
+}
+
+void Application ::viewConnectivity() {
+    this->graph.isConnected();
+}
+
+void Application ::drawGraph(int id, bool price)
+{
+    //Este VertexData serve apenas para encontrar o VertexData que esta guardado no grafo
+    VertexData v_finder(id);
+
+    //Devolve vetor com o caminho ate ao sharepoint mais proximo do no que tem um id igual ao do v_finder (neste caso 11)
+    vector<VertexData> nearest = graph.findNearestSharepoint(v_finder);
+
+    cout << "Shortest path: " << endl;
+    for(auto node:nearest){
+        cout << node.getId() << ";";
+    }
+    cout << endl;
+
+    //Devolve um vetor com todos os caminhos mais proximos para cada um dos sharepoints, ordenado por distancia de forma crescente
+    vector<vector<VertexData>> nearest_list = graph.findNearestSharepoints(v_finder);
+
+    //Pega num vetor com todos os caminhos mais proximos para cada um dos sharepoints e reordena-o por ordem crescente de preço
+    if (price)
+        orderSolutionByPrice(nearest_list);
+
+    cout << "List of paths: " << endl;
+    for(auto solution:nearest_list){
+        for(auto node:solution) {
+            cout << node.getId() << ";";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    //Recebe um vetor que representa um caminho e assinala-o a verde no grafo
+    visualizeGraph();
+    drawSolution(nearest);
 }

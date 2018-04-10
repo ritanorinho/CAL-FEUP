@@ -16,6 +16,8 @@ public:
     void addMenu();
     void returnMenu();
     void nearestPointMenu();
+    void distanceOp();
+    void priceOp();
 };
 
 

@@ -4,6 +4,7 @@
 #include "SharePoint.h"
 #include "Graph.h"
 #include "VertexData.h"
+#include "Client.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -11,6 +12,7 @@
 
 class Application{
     Graph<VertexData> graph;
+    vector<Client> clientList;
 public:
     Application();
     void start();
@@ -22,16 +24,36 @@ public:
 	void createSubRoad(string line);
 	void loadSharePoints(string path);
     void createSharePoint(string line);
+	void loadClients();
+	void createClient(string line);
 
     double getWeight(VertexData v1, VertexData v2);
 
     void visualizeGraph();
+	void viewConnectivity();
+
+	void drawGraph(int id, bool price);
 
     void drawSolution(vector<VertexData> sol);
 
     GraphViewer *gv;
 
 	void orderSolutionByPrice(vector<vector<VertexData>> &sol);
+
+	void listSharePoints();
+	void listClients();
+
+	void addNode();
+	void addRoad();
+	void addSubRoad();
+	void addSharePoint();
+	void addBicycle();
+	void addClient();
+
+
+	void rentBicycle();
+	void dropBicycle();
+	void applyDiscount();
 };
 
 #endif //PROJECT1_APPLICATION_H

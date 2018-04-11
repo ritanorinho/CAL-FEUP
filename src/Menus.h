@@ -17,8 +17,8 @@ public:
     void addMenu();
     void returnMenu();
     void nearestPointMenu();
-    void distanceOp();
-    void priceOp();
+    void distanceOp(int cid);
+    void priceOp(int cid);
     void blockRoadMenu();
     vector<vector<int>> getRoadsBlocked();
 };

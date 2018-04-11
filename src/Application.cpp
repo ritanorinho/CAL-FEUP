@@ -353,7 +353,7 @@ void Application ::createClient(string line) {
     line = line.erase(0, line.find(';') + 1);
     paymentNumber = stoi(line.substr(0, line.find(';')));
 
-    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    Client c = Client(id,paymentMethod, paymentNumber);
     this->clientList.push_back(c);
 }
 
@@ -501,15 +501,13 @@ void Application :: addClient()
 
     cout << "Client ID: ";
     cin >> id;
-    cout << "Bicycle ID: ";
-    cin >> bicycleId;
     cout << "Payment Method: ";
     cin.ignore();
     getline(cin, paymentMethod);
     cout << "Payment Number: ";
     cin >> paymentNumber;
 
-    Client c = Client(id, bicycleId, paymentMethod, paymentNumber);
+    Client c = Client(id,paymentMethod, paymentNumber);
     this->clientList.push_back(c);
 }
 
@@ -517,19 +515,13 @@ void Application ::viewConnectivity() {
     this->graph.isConnected();
 }
 
-void Application ::drawGraph(int id, bool price, vector<vector<int>> vect)
+void Application ::drawGraph(int id, bool price, vector<vector<int>> vect, int num)
 {
     //Este VertexData serve apenas para encontrar o VertexData que esta guardado no grafo
     VertexData v_finder(id);
 
     //Devolve vetor com o caminho ate ao sharepoint mais proximo do no que tem um id igual ao do v_finder (neste caso 11)
     vector<VertexData> nearest = graph.findNearestSharepoint(v_finder);
-
-    cout << "Shortest path: " << endl;
-    for(auto node:nearest){
-        cout << node.getId() << ";";
-    }
-    cout << endl;
 
     //Devolve um vetor com todos os caminhos mais proximos para cada um dos sharepoints, ordenado por distancia de forma crescente
     vector<vector<VertexData>> nearest_list = graph.findNearestSharepoints(v_finder);
@@ -551,6 +543,8 @@ void Application ::drawGraph(int id, bool price, vector<vector<int>> vect)
     visualizeGraph();
     drawSolution(trimSolution(nearest_list, vect));
     drawUnableRoads(vect);
+
+    this->drop(num, trimSolution(nearest_list, vect)[trimSolution(nearest_list, vect).size() - 1].getId());
 }
 
 Graph<VertexData> Application :: getGraph(){
@@ -588,7 +582,6 @@ vector<VertexData> Application ::trimSolution(vector<vector<VertexData>> vect, v
     }
 
 
-/*
 
     bool flag0 = false;
     bool flag1 = false;
@@ -658,9 +651,8 @@ vector<VertexData> Application ::trimSolution(vector<vector<VertexData>> vect, v
         index = 5;
         return vect[index];
     }
-*/
 
-    std::set<int> temp2;
+/*    std::set<int> temp2;
     sort(temp.begin(), temp.end());
     for  (int m = 0; m < temp.size(); m++)
     {
@@ -672,8 +664,110 @@ vector<VertexData> Application ::trimSolution(vector<vector<VertexData>> vect, v
         if (*it2 != index)
             break;
         else index++;
-    }
+    }*/
 
     return vect[index];
 
+}
+
+void Application ::listPrice() {
+    cout << endl;
+    for (auto v : this->graph.getVertexSet())
+    {
+        int n = 0;
+        if (v->getInfo().getSharePoint().getBicycles() != -1) {
+            n = v->getInfo().getSharePoint().getCurrentPrice();
+            cout << "SharePoint ID: " << v->getInfo().getId() << "\t Price: " << n << endl;
+        }
+    }
+    cout << endl;
+}
+
+void Application ::listInfo() {
+    cout << endl;
+    for (auto v : this->graph.getVertexSet())
+    {
+        cout << "Vertex ID: " << v->getInfo().getId() << "\t Height: " <<  v->getInfo().getHeight() <<"\t X: " <<  v->getInfo().x <<"\t Y: " <<  v->getInfo().y << endl;
+    }
+    cout << endl;
+}
+
+void Application ::rent()
+{
+    int client_id;
+    int node_id;
+
+    cout << "Client ID: ";
+    cin >> client_id;
+
+    bool flag = false;
+    for (int i = 0; i < this->clientList.size(); i++)
+    {
+        if (client_id == clientList[i].getId())
+            flag = true;
+    }
+
+    if (!flag)
+    {
+        cout << "No client with such ID";
+        return;
+    }
+
+    cout << "Share Point ID :";
+    cin >> node_id;
+
+    for (auto v : this->graph.getVertexSet())
+    {
+        if (v->getInfo().getId() == node_id)
+        {
+            if (v->getInfo().getSharePoint().getBicycles() > 0)
+            {
+                v->getInfo().getSharePoint().setBicycles(v->getInfo().getSharePoint().getBicycles() - 1);
+
+                for (int k = 0; k < this->clientList.size(); k++)
+                {
+                    if (client_id == clientList[k].getId())
+                        clientList[k].setBicycle(1);
+                }
+            }
+        }
+
+    }
+    cout << endl;
+}
+
+void Application :: drop(int c_id, int n_id)
+{
+    for (int k = 0; k < this->clientList.size(); k++)
+    {
+        if (c_id == clientList[k].getId())
+            clientList[k].setBicycle(-1);
+    }
+
+    for (auto v : this->graph.getVertexSet())
+    {
+        if (v->getInfo().getId() == n_id)
+            v->getInfo().getSharePoint().setBicycles(v->getInfo().getSharePoint().getBicycles() + 1);
+    }
+}
+
+vector<Client> Application ::getClientList(){
+    return this->clientList;
+}
+
+void Application::applyDiscount() {
+    double height=0;
+    int i =0;
+    for (auto it : graph.getVertexSet()){
+        cout <<it->getInfo().getSharePoint().getBicycles() << endl;
+        if (it->getInfo().getSharePoint().getBicycles() < 3)
+            it->getInfo().getSharePoint().setCurrentPrice(it->getInfo().getSharePoint().getCurrentPrice()*0.7);
+        i++;
+        height+=it->getInfo().getHeight();
+    }
+    height=height/i;
+    for (auto it : graph.getVertexSet()) {
+        if (it->getInfo().getHeight() > height)
+            it->getInfo().getSharePoint().setCurrentPrice(it->getInfo().getSharePoint().getCurrentPrice() * 0.75);
+    }
 }

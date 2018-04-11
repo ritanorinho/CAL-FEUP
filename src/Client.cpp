@@ -3,9 +3,9 @@
 //
 
 #include "Client.h"
-Client::Client(int id, int bicycleId, string paymentMethod, int paymentNumber) {
+Client::Client(int id, string paymentMethod, int paymentNumber) {
 	this->id = id;
-	this->bicycleId = bicycleId;
+	this->bicycleId = -1;
 	this->paymentMethod = paymentMethod;
 	this->paymentNumber = paymentNumber;
 }
@@ -13,12 +13,17 @@ int Client::getId() {
 	return id;
 }
 int Client::getBicycleId() {
-	return bicycleId;
+	return this->bicycleId;
 }
 string Client::getPaymentMethod() {
 	return this->paymentMethod;
 }
 int Client::getPaymentNumber() {
 	return this->paymentNumber;
+}
+
+void Client ::setBicycle(int bicycleId)
+{
+	this->bicycleId = bicycleId;
 }
 

@@ -16,10 +16,11 @@ private:
     int paymentNumber;
 
 public:
-    Client(int id, int bicycleId, string paymentMethod, int paymentNumber);
+    Client(int id,string paymentMethod, int paymentNumber);
     int getId();
     int getBicycleId();
     string getPaymentMethod();
     int getPaymentNumber();
+    void setBicycle(int id);
 
 };

@@ -8,7 +8,7 @@ void Menu :: mainMenu(){
     cout << "All files loaded correctly. Please choose one of the following options: " << endl << endl;
     cout << "1 - View Data;" << endl;
     cout << "2 - Add Data;" << endl;
-    cout << "3 - Return Bicycle;" << endl;
+    cout << "3 - Rent Bicycle;"<< endl;
     cout << "4 - Find nearest SharePoint;" << endl;
     cout << "5 - Block Road;"<< endl;
     cout << "6 - Exit;" << endl << endl;
@@ -48,7 +48,9 @@ void Menu ::viewMenu(){
     cout << "2 - View Graph's Connectivity;" << endl;
     cout << "3 - List Clients;" << endl;
     cout << "4 - List Bicycles;" << endl;
-    cout << "5 - Back to Main Menu" << endl;
+    cout << "5 - List Prices;" << endl;
+    cout << "6 - List Vertex Info;" << endl;
+    cout << "7 - Back to Main Menu" << endl;
     cout << "Option: ";
 
     string op;
@@ -74,6 +76,15 @@ void Menu ::viewMenu(){
             viewMenu();
             break;
         case 5:
+            this->app.applyDiscount();
+            this->app.listPrice();
+            viewMenu();
+            break;
+        case 6:
+            this->app.listInfo();
+            viewMenu();
+            break;
+        case 7:
             this->mainMenu();
             break;
     }
@@ -129,12 +140,44 @@ void Menu :: addMenu(){
 }
 
 void Menu :: returnMenu(){
-    cout << "--------|| Return Bicycle Menu ||--------" << endl << endl;
-
+    cout << "--------|| Rent Bicycle Menu ||--------" << endl << endl;
+    this->app.rent();
+    this->mainMenu();
 }
 
 void Menu :: nearestPointMenu(){
     cout << "--------|| Find Nearest Point Menu ||--------" << endl << endl;
+
+    int id;
+
+    cout << "User ID: ";
+    cin >> id;
+
+    bool flag = false;
+    for (int i = 0; i < this->app.getClientList().size(); i++)
+    {
+        if (this->app.getClientList()[i].getId() == id)
+            flag = true;
+    }
+
+    if (!flag){
+        cout << "No client with such ID" << endl;
+        return;
+    }
+
+    int num = 0;
+    for (int i = 0; i < this->app.getClientList().size(); i++)
+    {
+        if (this->app.getClientList()[i].getId() == id)
+            if (this->app.getClientList()[i].getBicycleId() == -1) {
+                cout << "First you have to rent a bike" << endl;
+                return;
+            } else
+                num = this->app.getClientList()[i].getBicycleId();
+
+    }
+
+
     cout << " Please choose one of the following options to optimize your travel: " << endl << endl;
     cout << "1 - Distance and Topology;" << endl;
     cout << "2 - Price;" << endl;
@@ -147,12 +190,12 @@ void Menu :: nearestPointMenu(){
 
     switch (n){
         case 1:
-            distanceOp();
-            nearestPointMenu();
+            distanceOp(num);
+            this->mainMenu();
             break;
         case 2:
-            priceOp();
-            nearestPointMenu();
+            priceOp(num);
+            this->mainMenu();
             break;
         case 3:
             this->mainMenu();
@@ -193,23 +236,24 @@ void Menu :: blockRoadMenu(){
     this->mainMenu();
 }
 
-void Menu ::distanceOp() {
+void Menu ::distanceOp(int cid) {
     int id;
     cout << "Insert your current node ID: ";
     cin >> id;
     cout << "Calculating the best path ... " << endl;
 
-    this->app.drawGraph(id, false, this->roadsBlocked);
+    this->app.drawGraph(id, false, this->roadsBlocked, cid);
 
 }
 
-void Menu ::priceOp() {
+void Menu ::priceOp(int cid) {
     int id;
     cout << "Insert your current node ID: ";
     cin >> id;
     cout << "Calculating the best path ... " << endl;
 
-    this->app.drawGraph(id, true, this->roadsBlocked);
+    this->app.applyDiscount();
+    this->app.drawGraph(id, true, this->roadsBlocked, cid);
 }
 
 vector<vector<int>> Menu ::getRoadsBlocked() {

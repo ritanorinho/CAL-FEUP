@@ -565,27 +565,115 @@ void Application ::viewGraph(vector<vector<int>> vect) {
 vector<VertexData> Application ::trimSolution(vector<vector<VertexData>> vect, vector<vector<int>> id_vec) {
 
     int index = 0;
+    vector<int> temp;
 
     auto it = vect.begin();
-    for (int m = 0; m < vect.size(); m++){
-        if (vect[m][vect.size()-1].getSharePoint().getBicycles() >= 10)
+      for (; it != vect.end() ; it++){
+        if ((*it)[(*it).size() - 1].getSharePoint().getBicycles() >= 10)
             vect.erase(it);
-        it++;
     }
+
 
     for (int i = 0; i < vect.size(); i++)
     {
-        for (int j = 0; j < vect[i].size(); j++)
+        for (int j = 0; j < vect[i].size() - 1; j++)
         {
             for (int k = 0; k < id_vec.size(); k++)
             {
                 if (vect[i][j].getId() == id_vec[k][0] && vect[i][j+1].getId() == id_vec[k][1]) {
-                    index++;
-                    i++;
+                    temp.push_back(i);
                 }
             }
         }
     }
 
+
+/*
+
+    bool flag0 = false;
+    bool flag1 = false;
+    bool flag2 = false;
+    bool flag3 = false;
+    bool flag4 = false;
+    bool flag5 = false;
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 0)
+            flag0 = true;
+    }
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 1)
+            flag1 = true;
+    }
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 2)
+            flag2 = true;
+    }
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 3)
+            flag3 = true;
+    }
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 4)
+            flag4 = true;
+    }
+
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        if (temp[m] == 5)
+            flag5 = true;
+    }
+
+
+    if (!flag0) {
+        index = 0;
+        return vect[index];
+    }
+    if (!flag1){
+        index = 1;
+        return vect[index];
+    }
+    if (!flag2){
+        index = 2;
+        return vect[index];
+    }
+    if (!flag3){
+        index = 3;
+        return vect[index];
+    }
+    if (!flag4){
+        index = 4;
+        return vect[index];
+    }
+    if (!flag5){
+        index = 5;
+        return vect[index];
+    }
+*/
+
+    std::set<int> temp2;
+    sort(temp.begin(), temp.end());
+    for  (int m = 0; m < temp.size(); m++)
+    {
+        temp2.insert({temp[m]});
+    }
+
+    for (auto it2 = temp2.begin(); it2 != temp2.end(); it2++)
+    {
+        if (*it2 != index)
+            break;
+        else index++;
+    }
+
     return vect[index];
+
 }

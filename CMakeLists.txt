@@ -14,4 +14,4 @@ add_executable(CAL
         src/Graph.h
         src/Menus.cpp
         src/MutablePriorityQueue.h
-        src/SharePoint.cpp src/VertexData.cpp src/VertexData.h)
+        src/SharePoint.cpp src/VertexData.cpp)

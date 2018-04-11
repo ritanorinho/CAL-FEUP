@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include<set>
 #include "GraphViewer/graphviewer.h"
 
 class Application{

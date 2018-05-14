@@ -10,6 +10,7 @@
 #include <limits>
 #include <cmath>
 #include "MutablePriorityQueue.h"
+#include <fstream>
 
 using namespace std;
 
@@ -239,6 +240,115 @@ Edge<T> *Graph<T>::addEdge(const T &sourc, const T &dest, double w,long id) {
 	return v1->addEdge(v2,w,id);
 }
 
+
+/*********************** String Algortihms **************************/
+
+void computePrefixFunction(string pattern, int f[]){
+    int m = pattern.length();
+    f[0] = -1;
+    int k = 0;
+
+    for (int i = 1; i < m; i++) {
+        k = f[i - 1];
+        while (k >= 0) {
+            if (pattern[k] == pattern[i - 1])
+                break;
+            else
+                k = f[k];
+        }
+        f[i] = k + 1;
+    }
+}
+
+int kmpMatcher(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+    int f[m];
+    int counter = 0;
+    computePrefixFunction(pattern, f);
+    int k = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        while(k >= 0 && pattern[k + 1] != text[i]) {
+            k = f[k];
+        }
+        if (pattern[k + 1] == text[i])
+            k++;
+        if (k == m - 1)
+        {
+            counter++;
+            k = f[k];
+        }
+    }
+    return counter;
+}
+
+
+int numStringMatching(string filename,string toSearch) {
+    ifstream ifs;
+    ifs.open("/Users/ff/CLionProjects/TP10/" + filename);
+
+    int counter = 0;
+    string line;
+
+    if (ifs.is_open())
+    {
+        while(getline(ifs, line))
+            counter += kmpMatcher(line, toSearch);
+    }
+
+    ifs.close();
+    return counter;
+}
+
+
+int editDistance(string pattern, string text) {
+
+    int n = text.length();
+    int m = pattern.length();
+    int previous, next;
+    int d[n+1];
+
+    for (int j = 0; j < n + 1; j++)
+        d[j] = j;
+
+    for (int i = 1; i < m + 1; i++)
+    {
+        previous = d[0];
+        d[0] = i;
+        for (int j = 1; j < n + 1 ; j++)
+        {
+            if (pattern[i - 1] == text[j - 1])
+                next = previous;
+            else
+            {
+                next = min(previous, d[j]);
+                next = 1 + min(next, d[j-1]);
+            }
+            previous = d[j];
+            d[j] = next;
+        }
+    }
+    return d[n];
+}
+
+float numApproximateStringMatching(string filename,string toSearch) {
+    ifstream ifs;
+    ifs.open("/Users/ff/CLionProjects/TP10/" + filename);
+
+    int counter = 0, n = 0;
+    string word;
+
+    while(!ifs.eof())
+    {
+        ifs >> word;
+        counter += editDistance(word, toSearch);
+        n++;
+    }
+    ifs.close();
+    return (float)counter/n;
+}
 
 /**************** Single Source Shortest Path algorithms ************/
 

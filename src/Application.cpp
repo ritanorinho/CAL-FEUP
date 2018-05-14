@@ -73,11 +73,16 @@ void Application::loadSharePoints(string path) {
 
 void Application::createSubRoad(string line) {
 	long id, node1_id, node2_id;
+    string nome_rua,district;
 	id = stol(line.substr(0, line.find(';')));
 	line = line.erase(0, line.find(';') + 1);
 	node1_id = stol(line.substr(0, line.find(';')));
 	line = line.erase(0, line.find(';') + 1);
 	node2_id= stol(line.substr(0, line.find(';')));
+    line = line.erase(0, line.find(';') + 1);
+    nome_rua= line.substr(0, line.find(';'));
+    line = line.erase(0, line.find(';') + 1);
+    district= line.substr(0, line.find(';'));
 
     VertexData v1_finder(node1_id);
     VertexData v2_finder(node2_id);
@@ -87,7 +92,7 @@ void Application::createSubRoad(string line) {
 
     double weight = getWeight(v1_real, v2_real);
 
-    graph.addEdge(v1_finder,v2_finder,weight,id);
+    graph.addEdge(v1_finder,v2_finder,weight,id,nome_rua,district);
 }
 
 double Application::getWeight(VertexData v1, VertexData v2){ //haversine formula + height difference
@@ -112,19 +117,14 @@ void Application::createRoad(string line) {
     name = line.substr(0, line.find(';'));
     line = line.erase(0, line.find(';') + 1);
     isTwoWay = line.substr(0, line.find(';'));
-    
+
     for(Vertex<VertexData> *vector : graph.getVertexSet()){
         for(auto &edge : vector->getAdj()){
             if(edge.getId() == stol(id)){
-                edge.setNome_rua(name);
-
                 if (isTwoWay[0] == 'T'){
                     double weight = getWeight(edge.getDest()->getInfo(), vector->getInfo());
 
-                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,stol(id));
-                    if(newEdge != nullptr){
-                        newEdge->setNome_rua(name);
-                    }
+                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,stol(id), edge.nome_rua,edge.district);
                 }
             }
         }
@@ -305,7 +305,7 @@ void Application::visualizeGraph(){
 
     for(auto vertex: graph.getVertexSet()){
         for(int j = 0; j < vertex->adj.size(); j++){
-            gv->setEdgeLabel(edgeId,to_string(vertex->adj[j].weight));
+            gv->setEdgeLabel(edgeId,vertex->adj[j].nome_rua);
 
             vertex->adj[j].graphViewerId = edgeId;
 
@@ -414,15 +414,15 @@ void Application :: addRoad()
     for(Vertex<VertexData> *vector : graph.getVertexSet()){
         for(auto &edge : vector->getAdj()){
             if(edge.getId() == id){
-                edge.setNome_rua(name);
+                edge.nome_rua = name;
 
                 if (isTwoWay[0] == 'T'){
                     //double weight = getDist(vector->getInfo(),edge.getDest()->getInfo());
                     double weight = 1; //For testing only
 
-                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,id);
+                    Edge<VertexData> *newEdge = graph.addEdge(edge.getDest()->getInfo(),vector->getInfo(),weight,id, edge.nome_rua, edge.district);
                     if(newEdge != nullptr){
-                        newEdge->setNome_rua(name);
+                        newEdge->nome_rua = name;
                     }
                 }
             }
@@ -433,6 +433,7 @@ void Application :: addRoad()
 void Application :: addSubRoad()
 {
     long id, node1_id, node2_id;
+    string nome_rua, district;
 
     cout << "SubRoad ID: ";
     cin >> id;
@@ -440,6 +441,10 @@ void Application :: addSubRoad()
     cin >> node1_id;
     cout << "Second Node ID: ";
     cin >> node2_id;
+    cout << "Nome Rua: ";
+    cin >> nome_rua;
+    cout << "District: ";
+    cin >> district;
 
     VertexData v1_finder(node1_id);
     VertexData v2_finder(node2_id);
@@ -449,7 +454,7 @@ void Application :: addSubRoad()
 
     double weight = getWeight(v1_real, v2_real);
 
-    graph.addEdge(v1_finder,v2_finder,weight,id);
+    graph.addEdge(v1_finder,v2_finder,weight,id,nome_rua,district);
 }
 
 void Application :: addSharePoint()
@@ -769,5 +774,25 @@ void Application::applyDiscount() {
     for (auto it : graph.getVertexSet()) {
         if (it->getInfo().getHeight() > height)
             it->getInfo().getSharePoint().setCurrentPrice(it->getInfo().getSharePoint().getCurrentPrice() * 0.75);
+    }
+}
+
+void Application::findIfSharePoint(string rua1, string rua2) {
+    Edge<VertexData> edge1 = graph.findBestMatch(rua1);
+    Edge<VertexData> edge2 = graph.findBestMatch(rua2);
+
+    Vertex<VertexData> *vertex = graph.findIntersection(edge1,edge2);
+
+    if(vertex == NULL){
+        cout << "Could not find intersection for given street names" << endl;
+        return;
+    }
+
+    //gv->setVertexColor(vertex->getInfo().getId(),"yellow");
+
+    if(vertex->getInfo().getSharePoint().getBicycles() < 0){
+        cout << "Vertex is not a sharepoint" << endl;
+    }else{
+        cout << "Vertex is a sharepoint" << endl;
     }
 }

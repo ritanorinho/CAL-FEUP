@@ -11,7 +11,8 @@ void Menu :: mainMenu(){
     cout << "3 - Rent Bicycle;"<< endl;
     cout << "4 - Find nearest SharePoint;" << endl;
     cout << "5 - Block Road;"<< endl;
-    cout << "6 - Exit;" << endl << endl;
+    cout << "6 - Check if Sharepoint" << endl;
+    cout << "7 - Exit;" << endl << endl;
     cout << "Option: ";
 
     string op;
@@ -35,6 +36,9 @@ void Menu :: mainMenu(){
             blockRoadMenu();
             break;
         case 6:
+            checkIfSharepoint();
+            break;
+        case 7:
             exit(0);
     }
 
@@ -258,4 +262,17 @@ void Menu ::priceOp(int cid) {
 
 vector<vector<int>> Menu ::getRoadsBlocked() {
     return this->roadsBlocked;
+}
+
+void Menu::checkIfSharepoint() {
+    string rua1, rua2;
+
+    cout << "Insert the name of the first street: " << endl;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(cin,rua1);
+    cout << "Insert the name of the second street: " << endl;
+    getline(cin,rua2);
+
+    this->app.findIfSharePoint(rua1,rua2);
+    this->mainMenu();
 }

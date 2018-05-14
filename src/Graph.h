@@ -32,8 +32,7 @@ private:
     // required by MutablePriorityQueue
 
 	bool processing = false;
-    Edge<T> * addEdge(Vertex<T> *dest, double w, long id);
-
+    Edge<T> *addEdge(Vertex<T> *d, double w, long id, string nome_rua, string district);
 public:
 	Vertex(T in);
 	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
@@ -48,6 +47,7 @@ public:
     double dist = 0;
     int queueIndex = 0;
     vector<Edge<T>> adj;
+
 };
 
 
@@ -59,14 +59,14 @@ Vertex<T>::Vertex(T in): info(in) {}
  * with a given destination vertex (d) and edge weight (w).
  */
 template <class T>
-Edge<T> *Vertex<T>::addEdge(Vertex<T> *d, double w, long id) {
+Edge<T> *Vertex<T>::addEdge(Vertex<T> *d, double w, long id, string nome_rua, string district) {
     for(auto edge:adj){
         if((edge.dest == d) && (edge.getId() == id)) {
             return nullptr;
         }
     }
 
-    Edge<T> *newEdge = new Edge<T>(d, w);
+    Edge<T> *newEdge = new Edge<T>(d, w, nome_rua, district);
     newEdge->setId(id);
 	adj.push_back(*newEdge);
     return newEdge;
@@ -98,6 +98,8 @@ template <class T>
 class Edge {
 	Vertex<T> * dest;
 public:
+    string nome_rua;
+    string district;
     Vertex<T> *getDest() const;
     long graphViewerId;
     void setDest(Vertex<T> *dest);
@@ -106,9 +108,9 @@ public:
 private:
     // destination vertex
 	long id;
-    string nome_rua;
 public:
-	Edge(Vertex<T> *d, double w);
+    Edge();
+    Edge(Vertex<T> *d, double w, string streetName, string district);
 	friend class Graph<T>;
 	friend class Vertex<T>;
     long getId() const;
@@ -117,8 +119,8 @@ public:
     void setNome_rua(const string &nome_rua);
 };
 
-template <class T>
-Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w) {}
+template<class T>
+Edge<T>::Edge(Vertex<T> *d, double w, string streetName, string district) : dest(d), weight(w), nome_rua(streetName), district(district){}
 
 
 /*************************** Graph  **************************/
@@ -130,9 +132,10 @@ class Graph {
 public:
 	Vertex<T> *findVertex(const T &in) const;
 	bool addVertex(const T &in);
-	Edge<T> *addEdge(const T &sourc, const T &dest, double w, long id);
 	int getNumVertex() const;
 	vector<Vertex<T> *> getVertexSet() const;
+    Edge<T> *addEdge(const T &sourc, const T &dest, double w,long id, string nome_rua, string district);
+    Edge<T> findBestMatch(string name);
 
 	// Fp05 - single source
 	void dijkstraShortestPath(const T &s);
@@ -151,6 +154,14 @@ public:
     void isStronglyConnected(Vertex<T> *vertex, vector<Vertex<T>*> *visited);
 
     bool isConnected();
+
+    void computePrefixFunction(string pattern, int *f);
+
+    int kmpMatcher(string text, string pattern);
+
+    int editDistance(string pattern, string text);
+
+    Vertex<T> *findIntersection(Edge<T> edge1, Edge<T> edge2);
 };
 
 template<class T>
@@ -193,6 +204,10 @@ void Edge<T>::setDest(Vertex<T> *dest) {
     Edge::dest = dest;
 }
 
+template<class T>
+Edge<T>::Edge() : id(-1) {}
+
+
 template <class T>
 int Graph<T>::getNumVertex() const {
 	return vertexSet.size();
@@ -232,122 +247,12 @@ bool Graph<T>::addVertex(const T &in) {
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 template <class T>
-Edge<T> *Graph<T>::addEdge(const T &sourc, const T &dest, double w,long id) {
+Edge<T> *Graph<T>::addEdge(const T &sourc, const T &dest, double w,long id, string nome_rua, string district) {
 	auto v1 = findVertex(sourc);
 	auto v2 = findVertex(dest);
 	if (v1 == NULL || v2 == NULL)
 		return nullptr;
-	return v1->addEdge(v2,w,id);
-}
-
-
-/*********************** String Algortihms **************************/
-
-void computePrefixFunction(string pattern, int f[]){
-    int m = pattern.length();
-    f[0] = -1;
-    int k = 0;
-
-    for (int i = 1; i < m; i++) {
-        k = f[i - 1];
-        while (k >= 0) {
-            if (pattern[k] == pattern[i - 1])
-                break;
-            else
-                k = f[k];
-        }
-        f[i] = k + 1;
-    }
-}
-
-int kmpMatcher(string text, string pattern) {
-    int n = text.length();
-    int m = pattern.length();
-    int f[m];
-    int counter = 0;
-    computePrefixFunction(pattern, f);
-    int k = -1;
-
-    for (int i = 0; i < n; i++)
-    {
-        while(k >= 0 && pattern[k + 1] != text[i]) {
-            k = f[k];
-        }
-        if (pattern[k + 1] == text[i])
-            k++;
-        if (k == m - 1)
-        {
-            counter++;
-            k = f[k];
-        }
-    }
-    return counter;
-}
-
-
-int numStringMatching(string filename,string toSearch) {
-    ifstream ifs;
-    ifs.open("/Users/ff/CLionProjects/TP10/" + filename);
-
-    int counter = 0;
-    string line;
-
-    if (ifs.is_open())
-    {
-        while(getline(ifs, line))
-            counter += kmpMatcher(line, toSearch);
-    }
-
-    ifs.close();
-    return counter;
-}
-
-
-int editDistance(string pattern, string text) {
-
-    int n = text.length();
-    int m = pattern.length();
-    int previous, next;
-    int d[n+1];
-
-    for (int j = 0; j < n + 1; j++)
-        d[j] = j;
-
-    for (int i = 1; i < m + 1; i++)
-    {
-        previous = d[0];
-        d[0] = i;
-        for (int j = 1; j < n + 1 ; j++)
-        {
-            if (pattern[i - 1] == text[j - 1])
-                next = previous;
-            else
-            {
-                next = min(previous, d[j]);
-                next = 1 + min(next, d[j-1]);
-            }
-            previous = d[j];
-            d[j] = next;
-        }
-    }
-    return d[n];
-}
-
-float numApproximateStringMatching(string filename,string toSearch) {
-    ifstream ifs;
-    ifs.open("/Users/ff/CLionProjects/TP10/" + filename);
-
-    int counter = 0, n = 0;
-    string word;
-
-    while(!ifs.eof())
-    {
-        ifs >> word;
-        counter += editDistance(word, toSearch);
-        n++;
-    }
-    ifs.close();
-    return (float)counter/n;
+	return v1->addEdge(v2,w,id,nome_rua,district);
 }
 
 /**************** Single Source Shortest Path algorithms ************/
@@ -565,29 +470,133 @@ void Graph<T>::isStronglyConnected(Vertex<T> *vertex,vector<Vertex<T> *> *visite
 }
 
 template<class T>
-void Graph<T>::unweightedShortestPath(const T &orig) {
-	// TODO
+Edge<T> Graph<T>::findBestMatch(string name) {
+    Edge<T> bestMatch;
+    int bestScore = -1;
+
+    for(Vertex<T>* vertex: vertexSet){
+        for(Edge<T> edge: vertex->adj){
+            if(kmpMatcher(name,edge.nome_rua) == 1){
+                return edge; //If match is perfect, return immediately
+            }
+            int score = editDistance(name,edge.nome_rua);
+
+            if(score > bestScore){
+                bestMatch = edge;
+            }
+        }
+    }
+
+    return bestMatch;
 }
 
 template<class T>
-void Graph<T>::bellmanFordShortestPath(const T &orig) {
-	// TODO
+Vertex<T> *Graph<T>::findIntersection(Edge<T> edge1, Edge<T> edge2) {
+    if(edge1.getId() == edge2.getId()){
+        cout << "Error finding intersection: Edges are the same" << endl;
+        return NULL;
+    }
+
+    Vertex<T> *possibleVertex1 = NULL;
+    Vertex<T> *possibleVertex2 = NULL;
+
+    for(Vertex<T> *vertex:vertexSet){
+        for(Edge<T> edge: vertex->adj){
+            if(edge.getId() == edge1.getId() || edge.getId() == edge2.getId()){
+                if(possibleVertex1 == NULL){
+                    possibleVertex1 = vertex;
+                    possibleVertex2 = edge.getDest();
+                }else{
+                    if(possibleVertex1 == vertex || possibleVertex2 == vertex){
+                        return vertex;
+                    }else if(possibleVertex1 == edge.getDest() || possibleVertex2 == edge.getDest()){
+                        return edge.getDest();
+                    }else{
+                        cout << "Error finding intersection: Streets requested do not intersect" << endl;
+                        return NULL;
+                    }
+                }
+            }
+        }
+    }
+
+    cout << "Error finding intersection: Reached theorically unreachable point" << endl;
+    return NULL;
 }
 
+/*********************** String Algortihms **************************/
 
-/**************** All Pairs Shortest Path  ***************/
+template <class T>
+void Graph<T>::computePrefixFunction(string pattern, int f[]){
+    int m = pattern.length();
+    f[0] = -1;
+    int k = 0;
 
-template<class T>
-void Graph<T>::floydWarshallShortestPath() {
-	// TODO
+    for (int i = 1; i < m; i++) {
+        k = f[i - 1];
+        while (k >= 0) {
+            if (pattern[k] == pattern[i - 1])
+                break;
+            else
+                k = f[k];
+        }
+        f[i] = k + 1;
+    }
 }
 
-template<class T>
-vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
-	vector<T> res;
-	// TODO
-	return res;
+template <class T>
+int Graph<T>::kmpMatcher(string text, string pattern) {
+    int n = text.length();
+    int m = pattern.length();
+    int f[m];
+    int counter = 0;
+    computePrefixFunction(pattern, f);
+    int k = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        while(k >= 0 && pattern[k + 1] != text[i]) {
+            k = f[k];
+        }
+        if (pattern[k + 1] == text[i])
+            k++;
+        if (k == m - 1)
+        {
+            counter++;
+            k = f[k];
+        }
+    }
+    return counter;
 }
 
+template <class T>
+int Graph<T>::editDistance(string pattern, string text) {
+    int n = text.length();
+    int m = pattern.length();
+    int previous, next;
+    int d[n+1];
+
+    for (int j = 0; j < n + 1; j++)
+        d[j] = j;
+
+    for (int i = 1; i < m + 1; i++)
+    {
+        previous = d[0];
+        d[0] = i;
+        for (int j = 1; j < n + 1 ; j++)
+        {
+            if (pattern[i - 1] == text[j - 1])
+                next = previous;
+            else
+            {
+                next = min(previous, d[j]);
+                next = 1 + min(next, d[j-1]);
+            }
+            previous = d[j];
+            d[j] = next;
+        }
+    }
+    return d[n];
+}
 
 #endif /* GRAPH_H_ */

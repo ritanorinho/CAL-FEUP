@@ -21,6 +21,8 @@ public:
     void priceOp(int cid);
     void blockRoadMenu();
     vector<vector<int>> getRoadsBlocked();
+
+    void checkIfSharepoint();
 };
 
 

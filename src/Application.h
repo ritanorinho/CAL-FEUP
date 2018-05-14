@@ -91,6 +91,8 @@ public:
 	void drop(int c_id, int n_id);
 
 	vector<Client> getClientList();
+
+    void findIfSharePoint(string basic_string, string basicString);
 };
 
 

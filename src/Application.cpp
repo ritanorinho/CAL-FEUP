@@ -777,7 +777,7 @@ void Application::applyDiscount() {
     }
 }
 
-void Application::findIfSharePoint(string rua1, string rua2) {
+int Application::findIfSharePoint(string rua1, string rua2, bool findPath) {
 
     cout << "Select algorithm: " << endl << endl;
     cout << "1 - Perfect match; " << endl;
@@ -799,24 +799,29 @@ void Application::findIfSharePoint(string rua1, string rua2) {
         edge1 = graph.findBestMatch(rua1);
         edge2 = graph.findBestMatch(rua2);
     }else{
-        findIfSharePoint(rua1,rua2);
+        findIfSharePoint(rua1,rua2, findPath);
     }
 
     if(edge1.getId() == -1 || edge2.getId() == -1){
         cout << "Could not find edge" << endl;
-        return;
+        return -1;
     }
 
     Vertex<VertexData> *vertex = graph.findIntersection(edge1,edge2);
 
     if(vertex == NULL){
         cout << "Could not find intersection for given street names" << endl;
-        return;
+        return -1;
     }
-
-    if(vertex->getInfo().getSharePoint().getBicycles() < 0){
-        cout << "Vertex is not a sharepoint" << endl;
-    }else{
-        cout << "Vertex is a sharepoint" << endl;
+    if (!findPath) {
+        if (vertex->getInfo().getSharePoint().getBicycles() < 0) {
+            cout << "Vertex is not a sharepoint" << endl;
+        } else {
+            cout << "Vertex is a sharepoint" << endl;
+        }
     }
+    else {
+        return vertex->getInfo().getId();
+    }
+    return -1;
 }

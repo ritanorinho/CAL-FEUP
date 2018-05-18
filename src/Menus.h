@@ -22,7 +22,7 @@ public:
     void blockRoadMenu();
     vector<vector<int>> getRoadsBlocked();
 
-    void checkIfSharepoint();
+    int checkIfSharepoint(bool findPath);
 };
 
 

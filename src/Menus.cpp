@@ -36,7 +36,7 @@ void Menu :: mainMenu(){
             blockRoadMenu();
             break;
         case 6:
-            checkIfSharepoint();
+            checkIfSharepoint(false);
             break;
         case 7:
             exit(0);
@@ -157,6 +157,7 @@ void Menu :: nearestPointMenu(){
     cout << "User ID: ";
     cin >> id;
 
+
     bool flag = false;
     for (int i = 0; i < this->app.getClientList().size(); i++)
     {
@@ -241,9 +242,10 @@ void Menu :: blockRoadMenu(){
 }
 
 void Menu ::distanceOp(int cid) {
-    int id;
-    cout << "Insert your current node ID: ";
-    cin >> id;
+    int id = checkIfSharepoint(true);
+    if (id == -1)
+        return;
+
     cout << "Calculating the best path ... " << endl;
 
     this->app.drawGraph(id, false, this->roadsBlocked, cid);
@@ -251,9 +253,9 @@ void Menu ::distanceOp(int cid) {
 }
 
 void Menu ::priceOp(int cid) {
-    int id;
-    cout << "Insert your current node ID: ";
-    cin >> id;
+    int id = checkIfSharepoint(true);
+    if (id == -1)
+        return;
     cout << "Calculating the best path ... " << endl;
 
     this->app.applyDiscount();
@@ -264,7 +266,7 @@ vector<vector<int>> Menu ::getRoadsBlocked() {
     return this->roadsBlocked;
 }
 
-void Menu::checkIfSharepoint() {
+int Menu::checkIfSharepoint(bool findPath) {
     string rua1, rua2;
 
     cout << "Insert the name of the first street: " << endl;
@@ -273,6 +275,9 @@ void Menu::checkIfSharepoint() {
     cout << "Insert the name of the second street: " << endl;
     getline(cin,rua2);
 
-    this->app.findIfSharePoint(rua1,rua2);
-    this->mainMenu();
+    int n = 0;
+    n = this->app.findIfSharePoint(rua1,rua2, findPath); //False significa que apenas vai ver se é sharepoint | True faz o caminho
+    if (n == -1)
+        this->mainMenu();
+    return n;
 }

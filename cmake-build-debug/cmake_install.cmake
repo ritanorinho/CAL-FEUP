@@ -1,4 +1,4 @@
-# Install script for directory: /Users/davidreis/Stuff/SemestreAtual/CAL/PROJ
+# Install script for directory: /Users/ff/Desktop/CAL/CAL-FEUP
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/davidreis/Stuff/SemestreAtual/CAL/PROJ/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ff/Desktop/CAL/CAL-FEUP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -92,7 +92,7 @@ public:
 
 	vector<Client> getClientList();
 
-    void findIfSharePoint(string basic_string, string basicString);
+    int findIfSharePoint(string basic_string, string basicString, bool findPath);
 };
 
 

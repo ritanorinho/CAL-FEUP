@@ -778,8 +778,34 @@ void Application::applyDiscount() {
 }
 
 void Application::findIfSharePoint(string rua1, string rua2) {
-    Edge<VertexData> edge1 = graph.findBestMatch(rua1);
-    Edge<VertexData> edge2 = graph.findBestMatch(rua2);
+
+    cout << "Select algorithm: " << endl << endl;
+    cout << "1 - Perfect match; " << endl;
+    cout << "2 - Approximate match; " << endl;
+    cout << "3 - Smart match (combines perfect and approximate); " << endl;
+    int choice;
+    cin >> choice;
+
+    Edge<VertexData> edge1;
+    Edge<VertexData> edge2;
+
+    if(choice == 1){
+        edge1 = graph.findPerfectMatch(rua1);
+        edge2 = graph.findPerfectMatch(rua2);
+    }else if(choice == 2){
+        edge1 = graph.findApproximateMatch(rua1);
+        edge2 = graph.findApproximateMatch(rua2);
+    }else if(choice == 3){
+        edge1 = graph.findBestMatch(rua1);
+        edge2 = graph.findBestMatch(rua2);
+    }else{
+        findIfSharePoint(rua1,rua2);
+    }
+
+    if(edge1.getId() == -1 || edge2.getId() == -1){
+        cout << "Could not find edge" << endl;
+        return;
+    }
 
     Vertex<VertexData> *vertex = graph.findIntersection(edge1,edge2);
 
@@ -787,8 +813,6 @@ void Application::findIfSharePoint(string rua1, string rua2) {
         cout << "Could not find intersection for given street names" << endl;
         return;
     }
-
-    //gv->setVertexColor(vertex->getInfo().getId(),"yellow");
 
     if(vertex->getInfo().getSharePoint().getBicycles() < 0){
         cout << "Vertex is not a sharepoint" << endl;

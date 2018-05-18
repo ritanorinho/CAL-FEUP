@@ -162,6 +162,10 @@ public:
     int editDistance(string pattern, string text);
 
     Vertex<T> *findIntersection(Edge<T> edge1, Edge<T> edge2);
+
+    Edge<T> findPerfectMatch(string name);
+
+    Edge<T> findApproximateMatch(string name);
 };
 
 template<class T>
@@ -472,27 +476,69 @@ void Graph<T>::isStronglyConnected(Vertex<T> *vertex,vector<Vertex<T> *> *visite
 template<class T>
 Edge<T> Graph<T>::findBestMatch(string name) {
     Edge<T> bestMatch;
-    int bestScore = -1;
+    int bestScore = 99999999;
 
     for(Vertex<T>* vertex: vertexSet){
         for(Edge<T> edge: vertex->adj){
             if(kmpMatcher(name,edge.nome_rua) == 1){
+                cout << "Found perfect match for street [" << edge.nome_rua << "]" << endl;
                 return edge; //If match is perfect, return immediately
             }
             int score = editDistance(name,edge.nome_rua);
 
-            if(score > bestScore){
+            if(score < bestScore){
                 bestMatch = edge;
+                bestScore = score;
             }
         }
     }
+
+    cout << "Best match for input [" << name << "] was street [" << bestMatch.nome_rua << "]" << endl;
+
+    return bestMatch;
+}
+
+
+template<class T>
+Edge<T> Graph<T>::findPerfectMatch(string name) {
+    for(Vertex<T>* vertex: vertexSet){
+        for(Edge<T> edge: vertex->adj){
+            if(kmpMatcher(name,edge.nome_rua) == 1){
+                cout << "Found perfect match for street [" << edge.nome_rua << "]" << endl;
+                return edge;
+            }
+        }
+    }
+
+    cout << "Could not find perfect match for name [" << name << "]" << endl;
+    Edge<T> edge;
+    return edge;
+}
+
+template<class T>
+Edge<T> Graph<T>::findApproximateMatch(string name) {
+    Edge<T> bestMatch;
+    int bestScore = 99999999;
+
+    for(Vertex<T>* vertex: vertexSet){
+        for(Edge<T> edge: vertex->adj){
+            int score = editDistance(name,edge.nome_rua);
+
+            if(score < bestScore){
+                bestMatch = edge;
+                bestScore = score;
+            }
+        }
+    }
+
+    cout << "Best match for input [" << name << "] was street [" << bestMatch.nome_rua << "]" << endl;
 
     return bestMatch;
 }
 
 template<class T>
 Vertex<T> *Graph<T>::findIntersection(Edge<T> edge1, Edge<T> edge2) {
-    if(edge1.getId() == edge2.getId()){
+    if(edge1.nome_rua == edge2.nome_rua){
         cout << "Error finding intersection: Edges are the same" << endl;
         return NULL;
     }
@@ -502,7 +548,7 @@ Vertex<T> *Graph<T>::findIntersection(Edge<T> edge1, Edge<T> edge2) {
 
     for(Vertex<T> *vertex:vertexSet){
         for(Edge<T> edge: vertex->adj){
-            if(edge.getId() == edge1.getId() || edge.getId() == edge2.getId()){
+            if(edge.nome_rua == edge1.nome_rua || edge.nome_rua == edge2.nome_rua){
                 if(possibleVertex1 == NULL){
                     possibleVertex1 = vertex;
                     possibleVertex2 = edge.getDest();

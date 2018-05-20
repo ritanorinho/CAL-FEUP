@@ -523,7 +523,7 @@ Edge<T> Graph<T>::findApproximateMatch(string name) {
     for(Vertex<T>* vertex: vertexSet){
         for(Edge<T> edge: vertex->adj){
             int score = editDistance(name,edge.nome_rua);
-
+            
             if(score < bestScore){
                 bestMatch = edge;
                 bestScore = score;
@@ -546,9 +546,12 @@ Vertex<T> *Graph<T>::findIntersection(Edge<T> edge1, Edge<T> edge2) {
     Vertex<T> *possibleVertex1 = NULL;
     Vertex<T> *possibleVertex2 = NULL;
 
+    string usedStreet;
+
     for(Vertex<T> *vertex:vertexSet){
         for(Edge<T> edge: vertex->adj){
-            if(edge.nome_rua == edge1.nome_rua || edge.nome_rua == edge2.nome_rua){
+            if((edge.nome_rua == edge1.nome_rua || edge.nome_rua == edge2.nome_rua) && edge.nome_rua != usedStreet){
+                usedStreet = edge.nome_rua;
                 if(possibleVertex1 == NULL){
                     possibleVertex1 = vertex;
                     possibleVertex2 = edge.getDest();
